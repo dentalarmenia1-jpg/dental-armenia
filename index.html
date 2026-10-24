@@ -61,12 +61,23 @@ h2{font-size:26px}
 <img src="https://dentalarmenia1-jpg.github.io/dental-armenia/Dental%20Armenia%20Tooth%20Emblem.png" alt="Dental Armenia Logo" class="logo">
 Dental Armenia
 </a>
-<nav class="languages" aria-label="Լեզու">
-<button type="button" onclick="setLanguage('hy')" aria-label="Հայերեն"><img src="ամ.webp" alt="Հայերեն"></button>
-<button type="button" onclick="setLanguage('ru')" aria-label="Русский"><img src="ռդ.jpg" alt="Русский"></button>
-<button type="button" onclick="setLanguage('en')" aria-label="English"><img src="ամն.webp" alt="English"></button>
-</nav>
-</header>
+
+<div class="languages" aria-label="Լեզու">
+  <button class="btn" type="button" onclick="openPatientRequest()" id="requestButton">📝 Պացիենտի հայտ</button>
+
+  <button type="button" onclick="setLanguage('hy')" aria-label="Հայերեն">
+    <img src="ամ.webp" alt="Հայերեն">
+  </button>
+
+  <button type="button" onclick="setLanguage('ru')" aria-label="Русский">
+    <img src="ռդ.jpg" alt="Русский">
+  </button>
+
+  <button type="button" onclick="setLanguage('en')" aria-label="English">
+    <img src="ամն.webp" alt="English">
+  </button>
+</div>
+
 
 <main>
   <section id="doctor-registration" style="display:none">
@@ -145,7 +156,7 @@ Dental Armenia
 <div class="hero">
 <h1 id="headline">Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում</h1>
 <p id="intro">Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։</p>
-<button class="btn" type="button" onclick="openPatientRequest()" id="requestButton">📝 Պացիենտի հայտ</button>
+<button class="btn" type="button" onclick="openPatientRequest()"id="headerRequestButton">📝 Պացիենտի հայտ</button>
 </div>
 
 <div class="contact-below">
@@ -219,7 +230,7 @@ const translations = {
 hy: {
 headline: "Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում",
 intro: "Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։",
-requestButton: "📝 Պացիենտի հայտ",
+headerRequestButton: "📝 Պացիենտի հայտ",
 requestTitle: "Պացիենտի հայտ",
 requestIntro: "Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։",
 nameLabel: "Անուն",
@@ -315,7 +326,7 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
 
   const ids = [
-    "headline", "intro", "requestButton", "requestTitle", "requestIntro",
+"headline", "intro", "requestButton", "headerRequestButton", "requestTitle", "requestIntro",
     "nameLabel", "phoneLabel", "needLabel", "chooseOption", "messageLabel",
     "submitLabel", "backButton", "formNote", "aboutPreviewTitle",
     "aboutPreviewText", "readMoreButton", "aboutMoreText1",
