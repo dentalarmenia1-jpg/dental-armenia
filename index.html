@@ -358,8 +358,12 @@ function toggleAbout() {
 }
 
 function openPatientRequest() {
-  document.getElementById("patient-request").style.display = "block";
-  document.getElementById("patient-request").scrollIntoView({
+  document.getElementById("doctor-registration").style.display = "none";
+
+  const form = document.getElementById("patient-request");
+  form.style.display = "block";
+
+  form.scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
