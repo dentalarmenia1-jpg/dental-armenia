@@ -446,5 +446,20 @@ document.getElementById("requestForm").addEventListener("submit", function(e) {
     "&body=" + encodeURIComponent(body);
 });
 </script>
+  
+<script>
+function openPatientRequest() {
+  document.querySelectorAll('main > *').forEach(section => {
+    section.style.display = 'none';
+  });
+
+  const form = document.getElementById('patient-request');
+  if (form) {
+    form.style.display = 'block';
+    form.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+
 </body>
 </html>
