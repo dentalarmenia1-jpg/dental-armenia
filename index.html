@@ -428,6 +428,43 @@ setLanguage(savedLanguage || "hy");
   data-site-id="cmvmczrk20003k108aaeiccc5"
   async>
 </script>
+  
+
+<script>
+  console.log("DOCTOR FORM SCRIPT LOADED");
+document.getElementById("doctorForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const button = form.querySelector('button[type="submit"]');
+  const originalText = button.textContent;
+
+  button.disabled = true;
+  button.textContent = "Ուղարկվում է...";
+
+  const data = new URLSearchParams(new FormData(form));
+
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxKjRnylZ4laXXK3Cslfmwg5cPIRkWeLoA5B193i60AiPQDJAg_qDhG6WGWxnKBGkY9/exec",
+      {
+        method: "POST",
+        body: data,
+        mode: "no-cors"
+      }
+    );
+
+    alert("Հայտն ուղարկվեց։ Շնորհակալություն։");
+    form.reset();
+
+  } catch (error) {
+    alert("Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին։");
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+});
+</script>
 
 </body>
 </html>
