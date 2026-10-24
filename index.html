@@ -69,6 +69,48 @@ Dental Armenia
 </header>
 
 <main>
+  <section id="doctor-registration" style="display:none">
+  <h2>Գրանցում ատամնաբույժների համար</h2>
+  <p class="intro">Միացեք Dental Armenia-ին՝ նոր պացիենտների հետ կապ հաստատելու համար։</p>
+
+  <form id="doctorForm">
+    <label>Անուն, ազգանուն
+      <input name="doctorName" required placeholder="Ձեր անունը և ազգանունը">
+    </label>
+
+    <label>Հեռախոսահամար
+      <input name="doctorPhone" type="tel" required placeholder="+374...">
+    </label>
+
+    <label>Քաղաք
+      <input name="city" required value="Երևան">
+    </label>
+
+    <label>Մասնագիտություն
+      <select name="specialty" required>
+        <option value="">Ընտրեք մասնագիտությունը</option>
+        <option>Թերապևտիկ ստոմատոլոգիա</option>
+        <option>Վիրաբուժական ստոմատոլոգիա</option>
+        <option>Օրթոպեդիա</option>
+        <option>Իմպլանտոլոգիա</option>
+        <option>Օրթոդոնտիա</option>
+        <option>Մանկական ստոմատոլոգիա</option>
+        <option>Այլ</option>
+      </select>
+    </label>
+
+    <label>Աշխատանքի հասցե
+      <input name="address" required placeholder="Քաղաք, փողոց">
+    </label>
+
+    <label>Մատուցվող ծառայություններ և փորձ
+      <textarea name="details" rows="4" placeholder="Նշեք ծառայությունները և աշխատանքային փորձը"></textarea>
+    </label>
+
+    <button class="btn" type="submit">Ուղարկել գրանցման հայտը</button>
+    <button class="btn" type="button" onclick="closeDoctorRegistration()">Վերադառնալ գլխավոր էջ</button>
+  </form>
+</section>
 <section id="patient-request" style="display:none">
 <h2 id="requestTitle">Պացիենտի հայտ</h2>
 <p class="intro" id="requestIntro">Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։</p>
@@ -110,6 +152,11 @@ Dental Armenia
 <a class="btn" href="tel:+37455466266">📞 +374 55 466266</a>
 <a class="btn" href="https://wa.me/37455466266" target="_blank" rel="noopener">WhatsApp</a>
 <a class="btn" href="https://t.me/Dentalarmenia1" target="_blank" rel="noopener">Telegram</a>
+</div>
+  <div class="contact-below">
+  <button class="btn" type="button" onclick="openDoctorRegistration()">
+    🦷 Գրանցվել որպես բժիշկ
+  </button>
 </div>
 
 <div class="about-preview">
@@ -313,6 +360,23 @@ function toggleAbout() {
 function openPatientRequest() {
   document.getElementById("patient-request").style.display = "block";
   document.getElementById("patient-request").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+  function openDoctorRegistration() {
+  document.getElementById("patient-request").style.display = "none";
+  document.getElementById("doctor-registration").style.display = "block";
+
+  document.getElementById("doctor-registration").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function closeDoctorRegistration() {
+  document.getElementById("doctor-registration").style.display = "none";
+  document.querySelector(".hero").scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
