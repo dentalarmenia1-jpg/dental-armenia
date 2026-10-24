@@ -36,7 +36,7 @@ header {
   gap: 8px;
   font-size: 23px;
   font-weight: bold;
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -44,37 +44,36 @@ header {
   width: 42px;
   height: 42px;
   object-fit: contain;
-  vertical-align: middle;
 }
 
 .languages {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .languages button {
   cursor: pointer;
-  font-size: 26px;
-  font-family: "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
   background: transparent;
-  border: 1px solid #667477;
-  border-radius: 8px;
-  padding: 5px 8px;
-  line-height: 1.4;
-  color: #ffffff;
-  min-width: 44px;
-  min-height: 44px;
+  border: none;
+  padding: 2px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  visibility: visible;
-  opacity: 1;
+}
+
+.languages button img {
+  width: 26px;
+  height: 18px;
+  object-fit: cover;
+  display: block;
 }
 
 .hero {
   padding: 60px 6%;
-  background: linear-gradient(rgba(255,255,255,0.15),rgba(255,255,255,0.15)), url('pexels-pavel-danilyuk-6812453%20(1).jpg') center center / cover no-repeat;
+  background:
+    linear-gradient(rgba(255,255,255,0.15),rgba(255,255,255,0.15)),
+    url('pexels-pavel-danilyuk-6812453%20(1).jpg') center center / cover no-repeat;
   text-align: center;
 }
 
@@ -102,6 +101,11 @@ h1 {
   font-weight: bold;
   margin: 5px;
   cursor: pointer;
+  font: inherit;
+}
+
+button.btn {
+  font-weight: bold;
 }
 
 section {
@@ -129,19 +133,54 @@ h2 {
 
 .card {
   background: white;
-  padding: 25px 18px;
+  padding: 18px;
   border: 1px solid #dceae6;
   border-radius: 14px;
   text-align: center;
+  overflow: hidden;
 }
 
-.card .icon {
-  font-size: 36px;
+.service-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.card h3 {
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.contact-below {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px auto;
+  padding: 0 15px;
+  text-align: center;
 }
 
 .about {
   background: #eaf4f1;
   text-align: center;
+}
+
+#patient-request {
+  background: #fff;
+}
+
+#patient-request h2 {
+  margin-top: 0;
+}
+
+#patient-request > p {
+  text-align: center;
+  line-height: 1.7;
 }
 
 form {
@@ -169,6 +208,16 @@ textarea {
   background: white;
 }
 
+textarea {
+  resize: vertical;
+}
+
+.note {
+  font-size: 13px;
+  color: #607572;
+  line-height: 1.5;
+}
+
 footer {
   background: #101b20;
   color: white;
@@ -181,115 +230,117 @@ footer a {
   color: #c5eee4;
 }
 
-.note {
-  font-size: 13px;
-  color: #607572;
-  line-height: 1.5;
-}
-  .languages {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  gap: 8px;
-}
+@media (max-width: 480px) {
+  header {
+    padding: 14px 5%;
+  }
 
-.languages button {
-  background: transparent !important;
-border: none !important;
-border-radius: 0 !important;
-padding: 2px !important;
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  font-size: 28px !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: initial !important;
-}
-  .languages button img {
-  width: 16px !important;
-  height: 11px !important;
-  object-fit: cover;
-  display: block;
-}
-  
-.contact-below {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 25px auto;
-  text-align: center;
-}
+  .brand {
+    font-size: 20px;
+  }
 
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero {
+    padding: 45px 5%;
+  }
+
+  section {
+    padding: 35px 5%;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-image {
+    height: 210px;
+  }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-<a href="https://dentalarmenia1-jpg.github.io/dental-armenia/" class="brand">
-  <img src="https://dentalarmenia1-jpg.github.io/dental-armenia/Dental%20Armenia%20Tooth%20Emblem.png" alt="Dental Armenia Logo" class="logo">
-  Dental Armenia
-</a>
+  <a href="https://dentalarmenia1-jpg.github.io/dental-armenia/" class="brand">
+    <img
+      src="https://dentalarmenia1-jpg.github.io/dental-armenia/Dental%20Armenia%20Tooth%20Emblem.png"
+      alt="Dental Armenia Logo"
+      class="logo">
+    Dental Armenia
+  </a>
 
-
-<nav class="languages" aria-label="Լեզու">
-  <button onclick="setLanguage('hy')" aria-label="Հայերեն">
-    <img src="ամ.webp" alt="Հայերեն">
-  </button>
-  <button onclick="setLanguage('ru')" aria-label="Русский">
-    <img src="ռդ.jpg" alt="Русский">
-  </button>
-  <button onclick="setLanguage('en')" aria-label="English">
-    <img src="ամն.webp" alt="English">
-  </button>
-</nav>
-
+  <nav class="languages" aria-label="Լեզու">
+    <button type="button" onclick="setLanguage('hy')" aria-label="Հայերեն">
+      <img src="ամ.webp" alt="Հայերեն">
+    </button>
+    <button type="button" onclick="setLanguage('ru')" aria-label="Русский">
+      <img src="ռդ.jpg" alt="Русский">
+    </button>
+    <button type="button" onclick="setLanguage('en')" aria-label="English">
+      <img src="ամն.webp" alt="English">
+    </button>
+  </nav>
 </header>
 
-
 <main>
-  <section id="patient-request" style="display:none; background:#fff;">
-  <h2>Պացիենտի հայտ</h2>
-  <p>Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։</p>
+  <section id="patient-request" style="display:none;">
+    <h2 id="requestTitle">Պացիենտի հայտ</h2>
+    <p class="intro" id="requestIntro">
+      Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։
+    </p>
 
-  <form id="requestForm">
-    <label>Անուն
-      <input name="name" required placeholder="Անուն">
-    </label>
+    <form id="requestForm">
+      <label>
+        <span id="nameLabel">Անուն</span>
+        <input id="patientName" name="name" required autocomplete="name" placeholder="Անուն">
+      </label>
 
-    <label>Հեռախոսահամար
-      <input name="phone" type="tel" required placeholder="+374...">
-    </label>
+      <label>
+        <span id="phoneLabel">Հեռախոսահամար</span>
+        <input id="patientPhone" name="phone" type="tel" required autocomplete="tel" placeholder="+374...">
+      </label>
 
-    <label>Ի՞նչ ծառայություն է անհրաժեշտ։
-      <select name="need" required>
-        <option value="">Ընտրեք ծառայությունը</option>
-        <option>Ատամների բուժում</option>
-        <option>Իմպլանտներ և պրոթեզավորում</option>
-        <option>Վիրաբուժական ստոմատոլոգիա</option>
-        <option>Մաքրում և սպիտակեցում</option>
-        <option>Մանկական ստոմատոլոգիա</option>
-        <option>Օրթոդոնտիա</option>
-        <option>Այլ</option>
-      </select>
-    </label>
+      <label>
+        <span id="needLabel">Ի՞նչ ծառայություն է անհրաժեշտ։</span>
+        <select name="need" id="need" required>
+          <option value="" id="chooseOption">Ընտրեք ծառայությունը</option>
+          <option value="therapy" data-hy="Թերապևտիկ ստոմատոլոգիա" data-ru="Терапевтическая стоматология" data-en="Therapeutic dentistry">Թերապևտիկ ստոմատոլոգիա</option>
+          <option value="surgery" data-hy="Վիրաբուժական ստոմատոլոգիա" data-ru="Хирургическая стоматология" data-en="Dental surgery">Վիրաբուժական ստոմատոլոգիա</option>
+          <option value="prosthodontics" data-hy="Օրթոպեդիա" data-ru="Ортопедия" data-en="Prosthodontics">Օրթոպեդիա</option>
+          <option value="implants" data-hy="Իմպլանտացիա" data-ru="Имплантация" data-en="Dental implants">Իմպլանտացիա</option>
+          <option value="orthodontics" data-hy="Օրթոդոնտիա" data-ru="Ортодонтия" data-en="Orthodontics">Օրթոդոնտիա</option>
+          <option value="pediatric" data-hy="Մանկական ստոմատոլոգիա" data-ru="Детская стоматология" data-en="Pediatric dentistry">Մանկական ստոմատոլոգիա</option>
+          <option value="other" data-hy="Այլ" data-ru="Другое" data-en="Other">Այլ</option>
+        </select>
+      </label>
 
-    <label>Լրացուցիչ տեղեկություն
-      <textarea name="message" rows="4" placeholder="Ձեր հաղորդագրությունը"></textarea>
-    </label>
+      <label>
+        <span id="messageLabel">Լրացուցիչ տեղեկություն</span>
+        <textarea id="patientMessage" name="message" rows="4" placeholder="Ձեր հաղորդագրությունը"></textarea>
+      </label>
 
-    <button class="btn" type="submit">Ուղարկել հայտը</button>
-    <button class="btn" type="button" onclick="location.reload()">Վերադառնալ գլխավոր էջ</button>
-  </form>
-</section>
+      <button class="btn" type="submit" id="submitLabel">Ուղարկել հայտը</button>
+      <button class="btn" type="button" id="backButton" onclick="closePatientRequest()">Վերադառնալ գլխավոր էջ</button>
+
+      <p class="note" id="formNote">
+        Ուղարկելուց հետո կբացվի ձեր էլ․ փոստի ծրագիրը։ Հայտը կայքում ինքնաբերաբար չի պահպանվում։
+      </p>
+    </form>
+  </section>
+
   <div class="hero">
     <h1 id="headline">Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում</h1>
-    <p id="intro">Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։</p>  
-
-<button class="btn" type="button" onclick="openPatientRequest()">📝 Պացիենտի հայտ</button>
-
-
+    <p id="intro">Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։</p>
+    <button class="btn" type="button" onclick="openPatientRequest()" id="requestButton">📝 Պացիենտի հայտ</button>
   </div>
 
   <div class="contact-below">
@@ -314,152 +365,225 @@ padding: 2px !important;
     <h2 id="servicesTitle">Ատամնաբուժական ծառայություններ</h2>
     <p class="intro" id="servicesIntro">Ընտրեք ձեզ անհրաժեշտ ծառայությունը։</p>
 
-<div class="grid" id="services">
-<article class="card"><div class="icon">🩺</div><h3 data-hy="Ատամների բուժում" data-ru="Лечение зубов" data-en="Dental treatment">Ատամների բուժում</h3></article>
-<article class="card"><div class="icon">🦷</div><h3 data-hy="Իմպլանտներ և պրոթեզավորում" data-ru="Имплантация и протезирование" data-en="Implants and prosthetics">Իմպլանտներ և պրոթեզավորում</h3></article>
-<article class="card"><div class="icon">🛠️</div><h3 data-hy="Վիրաբուժական ստոմատոլոգիա" data-ru="Хирургическая стоматология" data-en="Dental surgery">Վիրաբուժական ստոմատոլոգիա</h3></article>
-<article class="card"><div class="icon">✨</div><h3 data-hy="Մաքրում և սպիտակեցում" data-ru="Чистка и отбеливание" data-en="Cleaning and whitening">Մաքրում և սպիտակեցում</h3></article>
-<article class="card"><div class="icon">🧒</div><h3 data-hy="Մանկական ստոմատոլոգիա" data-ru="Детская стоматология" data-en="Pediatric dentistry">Մանկական ստոմատոլոգիա</h3></article>
-<article class="card"><div class="icon">😁</div><h3 data-hy="Օրթոդոնտիա" data-ru="Ортодонтия" data-en="Orthodontics">Օրթոդոնտիա</h3></article>
-</div>
-</section>
+    <div class="grid" id="services">
+      <article class="card">
+        <img src="Թերապևտիկ%20ստոմատոլոգիա.png" alt="Թերապևտիկ ստոմատոլոգիա" class="service-image">
+        <h3 data-hy="Թերապևտիկ ստոմատոլոգիա" data-ru="Терапевтическая стоматология" data-en="Therapeutic dentistry">Թերապևտիկ ստոմատոլոգիա</h3>
+      </article>
 
-<section class="about">
-<h2 id="aboutTitle">Մեր մասին</h2>
-<p class="intro" id="aboutText">Մենք օգնում ենք կողմնորոշվել և գտնել ատամնաբույժ կամ կլինիկա Հայաստանում։</p>
-<p>
-<a class="btn" href="tel:+37455466266" id="call">Զանգահարել</a>
-<a class="btn" href="mailto:dentalarmenia1@gmail.com" id="email">Գրել էլ․ փոստով</a>
-</p>
-</section>
+      <article class="card">
+        <img src="Վիրաբուժական%20ստոմատոլոգիա.png" alt="Վիրաբուժական ստոմատոլոգիա" class="service-image">
+        <h3 data-hy="Վիրաբուժական ստոմատոլոգիա" data-ru="Хирургическая стоматология" data-en="Dental surgery">Վիրաբուժական ստոմատոլոգիա</h3>
+      </article>
+
+      <article class="card">
+        <img src="Օրթոպեդիա.png" alt="Օրթոպեդիա" class="service-image">
+        <h3 data-hy="Օրթոպեդիա" data-ru="Ортопедия" data-en="Prosthodontics">Օրթոպեդիա</h3>
+      </article>
+
+      <article class="card">
+        <img src="Իմպլանտացիա.png" alt="Իմպլանտացիա" class="service-image">
+        <h3 data-hy="Իմպլանտացիա" data-ru="Имплантация" data-en="Dental implants">Իմպլանտացիա</h3>
+      </article>
+
+      <article class="card">
+        <img src="Օրթոդոնտիա.png" alt="Օրթոդոնտիա" class="service-image">
+        <h3 data-hy="Օրթոդոնտիա" data-ru="Ортодонтия" data-en="Orthodontics">Օրթոդոնտիա</h3>
+      </article>
+
+      <article class="card">
+        <img src="Մանկական%20ստոմատոլոգիա.png" alt="Մանկական ստոմատոլոգիա" class="service-image">
+        <h3 data-hy="Մանկական ստոմատոլոգիա" data-ru="Детская стоматология" data-en="Pediatric dentistry">Մանկական ստոմատոլոգիա</h3>
+      </article>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2 id="aboutTitle">Մեր մասին</h2>
+    <p class="intro" id="aboutText">Մենք օգնում ենք կողմնորոշվել և գտնել ատամնաբույժ կամ կլինիկա Հայաստանում։</p>
+    <p>
+      <a class="btn" href="tel:+37455466266" id="call">Զանգահարել</a>
+      <a class="btn" href="mailto:dentalarmenia1@gmail.com" id="email">Գրել էլ․ փոստով</a>
+    </p>
+  </section>
 </main>
 
 <footer>
-<strong>Dental Armenia</strong><br>
-<a href="tel:+37455466266">+374 55 466266</a><br>
-<a href="mailto:dentalarmenia1@gmail.com">dentalarmenia1@gmail.com</a>
+  <strong>Dental Armenia</strong><br>
+  <a href="tel:+37455466266">+374 55 466266</a><br>
+  <a href="mailto:dentalarmenia1@gmail.com">dentalarmenia1@gmail.com</a>
 </footer>
 
 <script>
 const translations = {
-hy: {
-headline: "Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում",
-intro: "Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։",
-contact: "Կապ մեզ հետ",
-servicesTitle: "Ատամնաբուժական ծառայություններ",
-servicesIntro: "Ընտրեք ձեզ անհրաժեշտ ծառայությունը։",
-requestTitle: "Պացիենտի հայտ",
-requestIntro: "Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։",
-nameLabel: "Անուն",
-phoneLabel: "Հեռախոսահամար",
-needLabel: "Ի՞նչ ծառայություն է անհրաժեշտ։",
-choose: "Ընտրեք ծառայությունը",
-messageLabel: "Լրացուցիչ տեղեկություն",
-submitLabel: "Ուղարկել հայտը",
-formNote: "Ուղարկելուց հետո կբացվի ձեր էլ․ փոստի ծրագիրը։ Հայտը կայքում ինքնաբերաբար չի պահպանվում։",
-aboutTitle: "Մեր մասին",
-aboutText: "Մենք օգնում ենք կողմնորոշվել և գտնել ատամնաբույժ կամ կլինիկա Հայաստանում։",
-call: "Զանգահարել",
-email: "Գրել էլ․ փոստով",
-services: ["Ատամների բուժում","Իմպլանտներ և պրոթեզավորում","Վիրաբուժական ստոմատոլոգիա","Մաքրում և սպիտակեցում","Մանկական ստոմատոլոգիա","Օրթոդոնտիա"]
-},
-ru: {
-headline: "Найдите подходящего стоматолога в Армении",
-intro: "Dental Armenia поможет найти стоматолога или клинику с учётом ваших потребностей.",
-contact: "Связаться с нами",
-servicesTitle: "Стоматологические услуги",
-servicesIntro: "Выберите необходимую услугу.",
-requestTitle: "Заявка пациента",
-requestIntro: "Заполните данные, и мы свяжемся с вами.",
-nameLabel: "Имя",
-phoneLabel: "Номер телефона",
-needLabel: "Какая услуга вам нужна?",
-choose: "Выберите услугу",
-messageLabel: "Дополнительная информация",
-submitLabel: "Отправить заявку",
-formNote: "Откроется ваша почтовая программа. Заявка автоматически не сохраняется на сайте.",
-aboutTitle: "О нас",
-aboutText: "Мы помогаем найти подходящего стоматолога или клинику в Армении.",
-call: "Позвонить",
-email: "Написать по электронной почте",
-services: ["Лечение зубов","Имплантация и протезирование","Хирургическая стоматология","Чистка и отбеливание","Детская стоматология","Ортодонтия"]
-},
-en: {
-headline: "Find the right dentist for you in Armenia",
-intro: "Dental Armenia helps you find a dentist or clinic that suits your needs.",
-contact: "Contact us",
-servicesTitle: "Dental services",
-servicesIntro: "Choose the service you need.",
-requestTitle: "Patient request",
-requestIntro: "Fill in your details and we will contact you.",
-nameLabel: "Name",
-phoneLabel: "Phone number",
-needLabel: "What service do you need?",
-choose: "Choose a service",
-messageLabel: "Additional information",
-submitLabel: "Send request",
-formNote: "Your email app will open. Requests are not automatically stored on the website.",
-aboutTitle: "About us",
-aboutText: "We help people find a suitable dentist or dental clinic in Armenia.",
-call: "Call us",
-email: "Email us",
-services: ["Dental treatment","Implants and prosthetics","Dental surgery","Cleaning and whitening","Pediatric dentistry","Orthodontics"]
-}
+  hy: {
+    headline: "Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում",
+    intro: "Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։",
+    requestButton: "📝 Պացիենտի հայտ",
+    servicesTitle: "Ատամնաբուժական ծառայություններ",
+    servicesIntro: "Ընտրեք ձեզ անհրաժեշտ ծառայությունը։",
+    requestTitle: "Պացիենտի հայտ",
+    requestIntro: "Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։",
+    nameLabel: "Անուն",
+    phoneLabel: "Հեռախոսահամար",
+    needLabel: "Ի՞նչ ծառայություն է անհրաժեշտ։",
+    choose: "Ընտրեք ծառայությունը",
+    messageLabel: "Լրացուցիչ տեղեկություն",
+    submitLabel: "Ուղարկել հայտը",
+    backButton: "Վերադառնալ գլխավոր էջ",
+    formNote: "Ուղարկելուց հետո կբացվի ձեր էլ․ փոստի ծրագիրը։ Հայտը կայքում ինքնաբերաբար չի պահպանվում։",
+    aboutTitle: "Մեր մասին",
+    aboutText: "Մենք օգնում ենք կողմնորոշվել և գտնել ատամնաբույժ կամ կլինիկա Հայաստանում։",
+    call: "Զանգահարել",
+    email: "Գրել էլ․ փոստով",
+    other: "Այլ",
+    messagePlaceholder: "Ձեր հաղորդագրությունը"
+  },
+  ru: {
+    headline: "Найдите подходящего стоматолога в Армении",
+    intro: "Dental Armenia поможет найти стоматолога или клинику с учётом ваших потребностей.",
+    requestButton: "📝 Заявка пациента",
+    servicesTitle: "Стоматологические услуги",
+    servicesIntro: "Выберите необходимую услугу.",
+    requestTitle: "Заявка пациента",
+    requestIntro: "Заполните данные, и мы свяжемся с вами.",
+    nameLabel: "Имя",
+    phoneLabel: "Номер телефона",
+    needLabel: "Какая услуга вам нужна?",
+    choose: "Выберите услугу",
+    messageLabel: "Дополнительная информация",
+    submitLabel: "Отправить заявку",
+    backButton: "Вернуться на главную",
+    formNote: "Откроется ваша почтовая программа. Заявка автоматически не сохраняется на сайте.",
+    aboutTitle: "О нас",
+    aboutText: "Мы помогаем найти подходящего стоматолога или клинику в Армении.",
+    call: "Позвонить",
+    email: "Написать по электронной почте",
+    other: "Другое",
+    messagePlaceholder: "Ваше сообщение"
+  },
+  en: {
+    headline: "Find the right dentist for you in Armenia",
+    intro: "Dental Armenia helps you find a dentist or clinic that suits your needs.",
+    requestButton: "📝 Patient request",
+    servicesTitle: "Dental services",
+    servicesIntro: "Choose the service you need.",
+    requestTitle: "Patient request",
+    requestIntro: "Fill in your details and we will contact you.",
+    nameLabel: "Name",
+    phoneLabel: "Phone number",
+    needLabel: "What service do you need?",
+    choose: "Choose a service",
+    messageLabel: "Additional information",
+    submitLabel: "Send request",
+    backButton: "Return to homepage",
+    formNote: "Your email app will open. Requests are not automatically stored on the website.",
+    aboutTitle: "About us",
+    aboutText: "We help people find a suitable dentist or dental clinic in Armenia.",
+    call: "Call us",
+    email: "Email us",
+    other: "Other",
+    messagePlaceholder: "Your message"
+  }
 };
+
+let currentLanguage = "hy";
 
 function setLanguage(lang) {
   const t = translations[lang];
+  if (!t) return;
+
+  currentLanguage = lang;
   document.documentElement.lang = lang;
 
-  ["headline","intro","contact","servicesTitle","servicesIntro","requestTitle","requestIntro","nameLabel","phoneLabel","needLabel","messageLabel","submitLabel","formNote","aboutTitle","aboutText","call","email"].forEach(id => {
-    document.getElementById(id).textContent = t[id];
+  [
+    "headline",
+    "intro",
+    "requestButton",
+    "servicesTitle",
+    "servicesIntro",
+    "requestTitle",
+    "requestIntro",
+    "nameLabel",
+    "phoneLabel",
+    "needLabel",
+    "messageLabel",
+    "submitLabel",
+    "backButton",
+    "formNote",
+    "aboutTitle",
+    "aboutText",
+    "call",
+    "email"
+  ].forEach(id => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = t[id];
   });
 
-  document.querySelectorAll("#services h3").forEach((el, i) => {
-    el.textContent = t.services[i];
+  document.querySelectorAll("#services h3").forEach(el => {
+    const translated = el.getAttribute("data-" + lang);
+    if (translated) el.textContent = translated;
   });
 
-  const select = document.getElementById("need");
-  select.options[0].textContent = t.choose;
-
-  Array.from(select.options).slice(1).forEach((option, i) => {
-    option.textContent = t.services[i] || ({hy:"Այլ",ru:"Другое",en:"Other"}[lang]);
+  document.querySelectorAll("#need option[data-" + lang + "]").forEach(option => {
+    option.textContent = option.getAttribute("data-" + lang);
   });
 
-  document.querySelector('input[name="name"]').placeholder = t.nameLabel;
-  document.querySelector('input[name="phone"]').placeholder = "+374...";
-  document.querySelector('textarea[name="message"]').placeholder =
-    ({hy:"Ձեր հաղորդագրությունը",ru:"Ваше сообщение",en:"Your message"}[lang]);
+  document.getElementById("chooseOption").textContent = t.choose;
+  document.getElementById("patientName").placeholder = t.nameLabel;
+  document.getElementById("patientPhone").placeholder = "+374...";
+  document.getElementById("patientMessage").placeholder = t.messagePlaceholder;
 }
 
-document.getElementById("requestForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+function openPatientRequest() {
+  document.querySelectorAll("main > *").forEach(element => {
+    element.style.display = "none";
+  });
+
+  const formSection = document.getElementById("patient-request");
+  formSection.style.display = "block";
+  formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closePatientRequest() {
+  document.querySelectorAll("main > *").forEach(element => {
+    element.style.display = "";
+  });
+
+  document.getElementById("patient-request").style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("requestForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
   const form = new FormData(this);
+  const serviceOption = document.querySelector("#need option:checked");
+
+  const labels = {
+    hy: { name: "Անուն", phone: "Հեռախոսահամար", service: "Ծառայություն", message: "Հաղորդագրություն" },
+    ru: { name: "Имя", phone: "Телефон", service: "Услуга", message: "Сообщение" },
+    en: { name: "Name", phone: "Phone", service: "Service", message: "Message" }
+  }[currentLanguage];
+
   const body = [
-    "Name: " + form.get("name"),
-    "Phone: " + form.get("phone"),
-    "Service: " + form.get("need"),
-    "Message: " + (form.get("message") || "")
+    labels.name + ": " + form.get("name"),
+    labels.phone + ": " + form.get("phone"),
+    labels.service + ": " + serviceOption.textContent,
+    labels.message + ": " + (form.get("message") || "")
   ].join("\n");
 
-  window.location.href = "mailto:dentalarmenia1@gmail.com?subject=" +
-    encodeURIComponent("Dental Armenia patient request") +
+  const subject = currentLanguage === "ru"
+    ? "Заявка пациента — Dental Armenia"
+    : currentLanguage === "en"
+      ? "Patient request — Dental Armenia"
+      : "Պացիենտի հայտ — Dental Armenia";
+
+  window.location.href =
+    "mailto:dentalarmenia1@gmail.com?subject=" +
+    encodeURIComponent(subject) +
     "&body=" + encodeURIComponent(body);
 });
-</script>
-  
-<script>
-function openPatientRequest() {
-  document.querySelectorAll('main > *').forEach(section => {
-    section.style.display = 'none';
-  });
-
-  const form = document.getElementById('patient-request');
-  if (form) {
-    form.style.display = 'block';
-    form.scrollIntoView({ behavior: 'smooth' });
-  }
-}
 </script>
 
 </body>
