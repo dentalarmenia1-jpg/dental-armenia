@@ -249,6 +249,40 @@ padding: 2px !important;
 
 
 <main>
+  <section id="patient-request" style="display:none; background:#fff;">
+  <h2>Պացիենտի հայտ</h2>
+  <p>Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։</p>
+
+  <form id="requestForm">
+    <label>Անուն
+      <input name="name" required placeholder="Անուն">
+    </label>
+
+    <label>Հեռախոսահամար
+      <input name="phone" type="tel" required placeholder="+374...">
+    </label>
+
+    <label>Ի՞նչ ծառայություն է անհրաժեշտ։
+      <select name="need" required>
+        <option value="">Ընտրեք ծառայությունը</option>
+        <option>Ատամների բուժում</option>
+        <option>Իմպլանտներ և պրոթեզավորում</option>
+        <option>Վիրաբուժական ստոմատոլոգիա</option>
+        <option>Մաքրում և սպիտակեցում</option>
+        <option>Մանկական ստոմատոլոգիա</option>
+        <option>Օրթոդոնտիա</option>
+        <option>Այլ</option>
+      </select>
+    </label>
+
+    <label>Լրացուցիչ տեղեկություն
+      <textarea name="message" rows="4" placeholder="Ձեր հաղորդագրությունը"></textarea>
+    </label>
+
+    <button class="btn" type="submit">Ուղարկել հայտը</button>
+    <button class="btn" type="button" onclick="location.reload()">Վերադառնալ գլխավոր էջ</button>
+  </form>
+</section>
   <div class="hero">
     <h1 id="headline">Գտեք ձեզ համապատասխան ատամնաբույժ Հայաստանում</h1>
     <p id="intro">Dental Armenia-ն օգնում է գտնել ձեր կարիքներին համապատասխան ատամնաբույժ կամ կլինիկա Հայաստանում։</p>  
