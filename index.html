@@ -574,3 +574,304 @@ try {
   // Եթե պահպանումը հասանելի չէ, մնում ենք հայերենով։
 }
 </script>
+  <!-- Պացիենտի հայտի պատուհան -->
+<div class="modal" id="patientModal" aria-hidden="true">
+  <div class="modal-content">
+    <button
+      type="button"
+      class="modal-close"
+      onclick="closeModal('patientModal')"
+      aria-label="Փակել"
+    >×</button>
+
+    <h2 id="patientFormTitle">Պացիենտի հայտ</h2>
+    <p id="patientFormDescription">
+      Լրացրեք տվյալները, և մենք կկապվենք ձեզ հետ։
+    </p>
+
+    <form id="patientForm">
+      <input type="hidden" name="formType" value="patient">
+
+      <label for="patientName" id="patientNameLabel">Անուն</label>
+      <input
+        type="text"
+        id="patientName"
+        name="name"
+        required
+        placeholder="Ձեր անունը"
+      >
+
+      <label for="patientPhone" id="patientPhoneLabel">
+        Հեռախոսահամար
+      </label>
+      <input
+        type="tel"
+        id="patientPhone"
+        name="phone"
+        required
+        placeholder="+374..."
+      >
+
+      <label for="patientCity" id="patientCityLabel">Քաղաք</label>
+      <input
+        type="text"
+        id="patientCity"
+        name="city"
+        required
+        placeholder="Օրինակ՝ Երևան"
+      >
+
+      <label for="patientService" id="patientServiceLabel">
+        Անհրաժեշտ ծառայություն
+      </label>
+      <select id="patientService" name="service" required>
+        <option value="">Ընտրեք ծառայությունը</option>
+        <option value="Թերապիա">Թերապիա</option>
+        <option value="Օրթոպեդիա">Օրթոպեդիա</option>
+        <option value="Վիրաբուժություն">Վիրաբուժություն</option>
+        <option value="Իմպլանտացիա">Իմպլանտացիա</option>
+        <option value="Մանկական ստոմատոլոգիա">
+          Մանկական ստոմատոլոգիա
+        </option>
+        <option value="Օրթոդոնտիա">Օրթոդոնտիա</option>
+        <option value="Այլ">Այլ</option>
+      </select>
+
+      <label for="patientComment" id="patientCommentLabel">
+        Լրացուցիչ տեղեկություն
+      </label>
+      <textarea
+        id="patientComment"
+        name="comment"
+        rows="3"
+        placeholder="Կարող եք գրել լրացուցիչ մանրամասներ"
+      ></textarea>
+
+      <button
+        type="submit"
+        class="btn primary"
+        id="patientSubmitButton"
+      >
+        Ուղարկել հայտը
+      </button>
+
+      <p id="patientFormStatus" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Բժշկի գրանցման պատուհան -->
+<div class="modal" id="doctorModal" aria-hidden="true">
+  <div class="modal-content">
+    <button
+      type="button"
+      class="modal-close"
+      onclick="closeModal('doctorModal')"
+      aria-label="Փակել"
+    >×</button>
+
+    <h2 id="doctorFormTitle">Գրանցվել որպես բժիշկ</h2>
+    <p id="doctorFormDescription">
+      Լրացրեք տվյալները՝ համագործակցությունը քննարկելու համար։
+    </p>
+
+    <form id="doctorForm">
+      <input type="hidden" name="formType" value="doctor">
+
+      <label for="doctorName" id="doctorNameLabel">
+        Բժշկի անուն, ազգանուն
+      </label>
+      <input
+        type="text"
+        id="doctorName"
+        name="name"
+        required
+        placeholder="Անուն Ազգանուն"
+      >
+
+      <label for="doctorPhone" id="doctorPhoneLabel">
+        Հեռախոսահամար
+      </label>
+      <input
+        type="tel"
+        id="doctorPhone"
+        name="phone"
+        required
+        placeholder="+374..."
+      >
+
+      <label for="doctorCity" id="doctorCityLabel">Քաղաք</label>
+      <input
+        type="text"
+        id="doctorCity"
+        name="city"
+        required
+        placeholder="Օրինակ՝ Երևան"
+      >
+
+      <label for="doctorSpecialty" id="doctorSpecialtyLabel">
+        Մասնագիտացում
+      </label>
+      <select
+        id="doctorSpecialty"
+        name="specialty"
+        required
+      >
+        <option value="">Ընտրեք մասնագիտացումը</option>
+        <option value="Թերապևտ">Թերապևտ</option>
+        <option value="Օրթոպեդ">Օրթոպեդ</option>
+        <option value="Վիրաբույժ">Վիրաբույժ</option>
+        <option value="Իմպլանտոլոգ">Իմպլանտոլոգ</option>
+        <option value="Մանկական ստոմատոլոգ">
+          Մանկական ստոմատոլոգ
+        </option>
+        <option value="Օրթոդոնտ">Օրթոդոնտ</option>
+        <option value="Այլ">Այլ</option>
+      </select>
+
+      <label for="doctorWorkplace" id="doctorWorkplaceLabel">
+        Աշխատանքի վայր
+      </label>
+      <input
+        type="text"
+        id="doctorWorkplace"
+        name="workplace"
+        placeholder="Կլինիկայի անունը կամ հասցեն"
+      >
+
+      <label for="doctorComment" id="doctorCommentLabel">
+        Լրացուցիչ տեղեկություն
+      </label>
+      <textarea
+        id="doctorComment"
+        name="comment"
+        rows="3"
+        placeholder="Ձեր հաղորդագրությունը"
+      ></textarea>
+
+      <button
+        type="submit"
+        class="btn primary"
+        id="doctorSubmitButton"
+      >
+        Ուղարկել հայտը
+      </button>
+
+      <p id="doctorFormStatus" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+function openPatientRequest() {
+  openModal("patientModal");
+}
+
+function openDoctorRegistration() {
+  openModal("doctorModal");
+}
+
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal(modal.id);
+    }
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".modal.active").forEach((modal) => {
+      closeModal(modal.id);
+    });
+  }
+});
+
+async function submitToSheet(form, statusElementId, buttonId) {
+  const status = document.getElementById(statusElementId);
+  const button = document.getElementById(buttonId);
+
+  if (!form.reportValidity()) return;
+
+  const formData = new FormData(form);
+  const data = {};
+
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  status.textContent = "Հայտն ուղարկվում է…";
+  button.disabled = true;
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: new URLSearchParams(data)
+    });
+
+    status.textContent =
+      "Հայտն ուղարկելու հարցումն ուղարկվել է։ Խնդրում ենք ստուգել կապը և հայտի գրանցումը։";
+
+    form.reset();
+  } catch (error) {
+    status.textContent =
+      "Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին կամ կապվել մեզ հետ։";
+
+    console.error("Form submission error:", error);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+document.getElementById("patientForm").addEventListener(
+  "submit",
+  async (event) => {
+    event.preventDefault();
+
+    await submitToSheet(
+      event.currentTarget,
+      "patientFormStatus",
+      "patientSubmitButton"
+    );
+  }
+);
+
+document.getElementById("doctorForm").addEventListener(
+  "submit",
+  async (event) => {
+    event.preventDefault();
+
+    await submitToSheet(
+      event.currentTarget,
+      "doctorFormStatus",
+      "doctorSubmitButton"
+    );
+  }
+);
+</script>
+
+<script
+  src="https://www.talktg.com/widget.js"
+  data-site-id="cmvmczrk20003k108aaeiccc5"
+  async
+></script>
+
+</body>
+</html>
