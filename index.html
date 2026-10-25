@@ -327,14 +327,16 @@ function setLanguage(lang) {
 
   document.documentElement.lang = lang;
 
-  const ids = [
-"headline", "intro", "requestButton", "headerRequestButton", "requestTitle", "requestIntro",
-    "nameLabel", "phoneLabel", "needLabel", "chooseOption", "messageLabel",
-    "submitLabel", "backButton", "formNote", "aboutPreviewTitle",
-    "aboutPreviewText", "readMoreButton", "aboutMoreText1",
-    "aboutMoreText2", "aboutMoreText3", "servicesTitle",
-    "servicesIntro", "footerText"
-  ];
+
+const ids = [
+  "headline", "intro", "requestButton", "headerDoctorButton", "headerRequestButton", "requestTitle", "requestIntro",
+  "nameLabel", "phoneLabel", "needLabel", "chooseOption", "messageLabel",
+  "submitLabel", "backButton", "formNote", "aboutPreviewTitle",
+  "aboutPreviewText", "readMoreButton", "aboutMoreText1",
+  "aboutMoreText2", "aboutMoreText3", "servicesTitle",
+  "servicesIntro", "footerText"
+];
+
 
   ids.forEach(id => {
     const el = document.getElementById(id);
