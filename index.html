@@ -407,29 +407,41 @@ function closePatientRequest() {
 }
 </script>
 <script>
-document.getElementById("requestForm").addEventListener("submit", function(event) {
+
+document.getElementById("requestForm").addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const lang = document.documentElement.lang || "hy";
-  const t = translations[lang];
+  const form = this;
+  const button = form.querySelector('button[type="submit"]');
+  const originalText = button.textContent;
 
-  const name = document.getElementById("patientName").value.trim();
-  const phone = document.getElementById("patientPhone").value.trim();
-  const needSelect = document.getElementById("need");
-  const need = needSelect.options[needSelect.selectedIndex].text;
-  const message = document.getElementById("patientMessage").value.trim();
+  const data = new URLSearchParams(new FormData(form));
+  data.set("formType", "patient");
 
-  const subject = encodeURIComponent(t.emailSubject);
-  const body = encodeURIComponent(
-    t.emailName + ": " + name + "\n" +
-    t.emailPhone + ": " + phone + "\n" +
-    t.emailNeed + ": " + need + "\n" +
-    t.emailMessage + ": " + message
-  );
+  button.disabled = true;
+  button.textContent = "Ուղարկվում է...";
 
-  window.location.href =
-    "mailto:dentalarmenia1@gmail.com?subject=" + subject + "&body=" + body;
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxKjRnylZ4laXXK3Cslfmwg5cPIRkWeLoA5B193i60AiPQDJAg_qDhG6WGWxnKBGkY9/exec",
+      {
+        method: "POST",
+        body: data,
+        mode: "no-cors"
+      }
+    );
+
+    alert("Հայտն ուղարկվեց։ Շնորհակալություն։");
+    form.reset();
+
+  } catch (error) {
+    alert("Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին։");
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
 });
+
 
 const savedLanguage = localStorage.getItem("dentalArmeniaLanguage");
 setLanguage(savedLanguage || "hy");
