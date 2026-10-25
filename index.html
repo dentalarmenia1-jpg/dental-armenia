@@ -1194,7 +1194,7 @@
         <div class="hero-content">
 
           <span class="hero-label" data-i18n="heroLabel">
-            🦷 Ձեր ժպիտը կարևոր է
+           Ձեր ժպիտը կարևոր է
           </span>
 
           <h1 data-i18n="heroTitle">
@@ -1491,14 +1491,15 @@
             </li>
           </ul>
 
-          <button
-            class="btn btn-primary"
-            type="button"
-            onclick="openPatientRequest()"
-            data-i18n="aboutButton"
-          >
-            Ուղարկել հայտ
-          </button>
+         
+<button
+  class="btn btn-primary"
+  type="button"
+  onclick="document.getElementById('about-more').hidden = false; document.getElementById('about-more').scrollIntoView({behavior:'smooth'})"
+>
+  Կարդալ ավելին մեր մասին
+</button>
+
         </div>
 
         <aside class="about-panel">
