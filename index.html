@@ -431,12 +431,10 @@ setLanguage(savedLanguage || "hy");
   
 
 <script>
-  console.log("DOCTOR FORM SCRIPT LOADED");
 document.getElementById("doctorForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const form = this;
-  console.log("DOCTOR FORM SUBMIT FIRED");
   const button = form.querySelector('button[type="submit"]');
   const originalText = button.textContent;
 
