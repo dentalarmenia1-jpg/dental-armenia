@@ -436,6 +436,7 @@ document.getElementById("doctorForm").addEventListener("submit", async function(
   e.preventDefault();
 
   const form = this;
+  console.log("DOCTOR FORM SUBMIT FIRED");
   const button = form.querySelector('button[type="submit"]');
   const originalText = button.textContent;
 
