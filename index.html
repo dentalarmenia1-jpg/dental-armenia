@@ -2339,6 +2339,7 @@
       }
     }
 
+
 function toggleAboutCard(cardId) {
   const content = document.getElementById(cardId);
   if (!content) return;
@@ -2350,9 +2351,18 @@ function toggleAboutCard(cardId) {
   const isOpening = content.hidden;
   content.hidden = !isOpening;
 
+  const lang = document.documentElement.lang || "hy";
+  const words = {
+    hy: { more: "Կարդալ ավելին", close: "Փակել" },
+    ru: { more: "Читать далее", close: "Закрыть" },
+    en: { more: "Read more", close: "Close" }
+  };
+
   if (button) {
     button.setAttribute("aria-expanded", String(isOpening));
-    button.textContent = isOpening ? "Փակել" : "Կարդալ ավելին";
+    button.textContent = isOpening
+      ? words[lang].close
+      : words[lang].more;
   }
 }
 
