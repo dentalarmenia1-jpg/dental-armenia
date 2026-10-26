@@ -534,12 +534,19 @@
 
     /* ABOUT / CTA */
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 45px;
-    }
+  
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+}
+
+.about-grid > .about-panel {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
     .about-copy h2 {
       margin: 0 0 18px;
@@ -883,6 +890,11 @@
     @media (max-width: 760px) {
       .container {
         width: min(100% - 30px, 600px);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .section {
@@ -1480,68 +1492,76 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="container about-grid">
 
-        <div class="about-copy">
-          <span class="eyebrow" data-i18n="aboutEyebrow">Մեր մասին</span>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow" data-i18n="aboutEyebrow">Մեր մասին</span>
+    </div>
 
-          <h2 data-i18n="aboutTitle">
-            Dental Armenia — ձեր ատամնաբույժը գտնելու հարցում
-          </h2>
+    <div class="about-grid">
 
-          <p data-i18n="aboutText">
-            Մեր նպատակն է հեշտացնել ատամնաբույժ գտնելու գործընթացը։
-            Դուք կարող եք հայտնել ձեր կարիքը, իսկ մենք կօգնենք
-            կողմնորոշվել հնարավոր տարբերակներում։
+      <!-- PATIENT CARD -->
+      <article class="about-panel">
+        <div class="panel-icon">🦷</div>
+        <h3>Պացիենտների համար</h3>
+        <p>
+          Մեր նպատակն է հեշտացնել ատամնաբույժ գտնելու գործընթացը։
+          Դուք կարող եք հայտնել ձեր կարիքը, իսկ մենք կօգնենք
+          կողմնորոշվել հնարավոր տարբերակներում։
+        </p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          onclick="toggleAboutCard('patient-more')"
+          aria-expanded="false"
+          aria-controls="patient-more">
+          Կարդալ ավելին
+        </button>
+        <div id="patient-more" hidden>
+          <p>
+            Մենք օգնում ենք կողմնորոշվել ատամնաբուժական տարբեր
+            ուղղություններում և կապ հաստատել համապատասխան մասնագետի հետ։
           </p>
-
-          <ul class="about-points">
-            <li>
-              <span>✓</span>
-              <span data-i18n="aboutPoint1">Տարբեր ատամնաբուժական ուղղություններ</span>
-            </li>
-            <li>
-              <span>✓</span>
-              <span data-i18n="aboutPoint2">Հայերեն, ռուսերեն և անգլերեն հաղորդակցություն</span>
-            </li>
-            <li>
-              <span>✓</span>
-              <span data-i18n="aboutPoint3">Հարցումների անհատական քննարկում</span>
-            </li>
-          </ul>
-
-         
-<button
-  class="btn btn-primary"
-  type="button"
-  onclick="document.getElementById('about-more').hidden = !document.getElementById('about-more').hidden"
->
-  Կարդալ ավելին մեր մասին
-</button>
-
+          <p>Կարող եք գրել հայերեն, ռուսերեն կամ անգլերեն։</p>
         </div>
+      </article>
 
-        <aside class="about-panel">
-          <div class="panel-icon">🦷</div>
-          <h3 data-i18n="panelTitle">Դուք ատամնաբո՞ւյժ եք</h3>
-          <p data-i18n="panelText">
-            Եթե ցանկանում եք համագործակցել Dental Armenia-ի հետ,
-            ուղարկեք ձեր տվյալները։
+      <!-- DENTIST CARD -->
+      <article class="about-panel">
+        <div class="panel-icon">👨‍⚕️</div>
+        <h3>Ատամնաբույժների համար</h3>
+        <p>
+          Dental Armenia-ն առաջարկում է համագործակցություն
+          ատամնաբույժներին՝ նոր պացիենտների հետ կապ հաստատելու համար։
+        </p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          onclick="toggleAboutCard('dentist-more')"
+          aria-expanded="false"
+          aria-controls="dentist-more">
+          Կարդալ ավելին
+        </button>
+        <div id="dentist-more" hidden>
+          <p>
+            Ներկայացրեք ձեր տվյալները՝ համագործակցության հնարավորությունները
+            քննարկելու համար։
           </p>
+          <p>Գրանցումն անվճար է։</p>
           <button
             class="btn btn-secondary"
             type="button"
-            onclick="openDoctorRegistration()"
-            data-i18n="doctorButton"
-          >
+            onclick="openDoctorRegistration()">
             Գրանցվել որպես բժիշկ
           </button>
-        </aside>
+        </div>
+      </article>
 
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section class="section contact-section" id="contact">
@@ -2286,6 +2306,24 @@
         window.setTimeout(() => firstInput.focus(), 50);
       }
     }
+
+function toggleAboutCard(cardId) {
+  const content = document.getElementById(cardId);
+  if (!content) return;
+
+  const button = document.querySelector(
+    '[aria-controls="' + cardId + '"]'
+  );
+
+  const isOpening = content.hidden;
+  content.hidden = !isOpening;
+
+  if (button) {
+    button.setAttribute("aria-expanded", String(isOpening));
+    button.textContent = isOpening ? "Փակել" : "Կարդալ ավելին";
+  }
+}
+
 
     function closeModal(modalId) {
       const modal = document.getElementById(modalId);
