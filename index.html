@@ -1502,66 +1502,64 @@
 
     <div class="about-grid">
 
-      <!-- PATIENT CARD -->
-      <article class="about-panel">
-        <div class="panel-icon">🦷</div>
-        <h3>Պացիենտների համար</h3>
-        <p>
-          Մեր նպատակն է հեշտացնել ատամնաբույժ գտնելու գործընթացը։
-          Դուք կարող եք հայտնել ձեր կարիքը, իսկ մենք կօգնենք
-          կողմնորոշվել հնարավոր տարբերակներում։
-        </p>
-        <button
-          class="btn btn-primary"
-          type="button"
-          onclick="toggleAboutCard('patient-more')"
-          aria-expanded="false"
-          aria-controls="patient-more">
-          Կարդալ ավելին
-        </button>
-        <div id="patient-more" hidden>
-          <p>
-            Մենք օգնում ենք կողմնորոշվել ատամնաբուժական տարբեր
-            ուղղություններում և կապ հաստատել համապատասխան մասնագետի հետ։
-          </p>
-          <p>Կարող եք գրել հայերեն, ռուսերեն կամ անգլերեն։</p>
-        </div>
-      </article>
-
-      <!-- DENTIST CARD -->
-      <article class="about-panel">
-        <div class="panel-icon">👨‍⚕️</div>
-        <h3>Ատամնաբույժների համար</h3>
-        <p>
-          Dental Armenia-ն առաջարկում է համագործակցություն
-          ատամնաբույժներին՝ նոր պացիենտների հետ կապ հաստատելու համար։
-        </p>
-        <button
-          class="btn btn-primary"
-          type="button"
-          onclick="toggleAboutCard('dentist-more')"
-          aria-expanded="false"
-          aria-controls="dentist-more">
-          Կարդալ ավելին
-        </button>
-        <div id="dentist-more" hidden>
-          <p>
-            Ներկայացրեք ձեր տվյալները՝ համագործակցության հնարավորությունները
-            քննարկելու համար։
-          </p>
-          <p>Գրանցումն անվճար է։</p>
-          <button
-            class="btn btn-secondary"
-            type="button"
-            onclick="openDoctorRegistration()">
-            Գրանցվել որպես բժիշկ
-          </button>
-        </div>
-      </article>
-
-    </div>
+     
+<!-- PATIENT CARD -->
+<article class="about-panel">
+  <div class="panel-icon">🦷</div>
+  <h3 data-i18n="aboutPatientsTitle">Պացիենտների համար</h3>
+  <p data-i18n="aboutPatientsText">
+    Մեր նպատակն է հեշտացնել ատամնաբույժ գտնելու գործընթացը։
+    Դուք կարող եք հայտնել ձեր կարիքը, իսկ մենք կօգնենք կողմնորոշվել հնարավոր տարբերակներում։
+  </p>
+  <button
+    class="btn btn-primary"
+    type="button"
+    onclick="toggleAboutCard('patient-more')"
+    aria-expanded="false"
+    aria-controls="patient-more"
+    data-i18n="aboutReadMore">
+    Կարդալ ավելին
+  </button>
+  <div id="patient-more" hidden>
+    <p data-i18n="aboutPatientsMore1">
+      Մենք օգնում ենք կողմնորոշվել ատամնաբուժական տարբեր ուղղություններում և կապ հաստատել համապատասխան մասնագետի հետ։
+    </p>
+    <p data-i18n="aboutPatientsMore2">
+      Կարող եք գրել հայերեն, ռուսերեն կամ անգլերեն։
+    </p>
   </div>
-</section>
+</article>
+
+<!-- DENTIST CARD -->
+<article class="about-panel">
+  <div class="panel-icon">👨‍⚕️</div>
+  <h3 data-i18n="aboutDentistsTitle">Ատամնաբույժների համար</h3>
+  <p data-i18n="aboutDentistsText">
+    Dental Armenia-ն առաջարկում է համագործակցություն ատամնաբույժներին՝ նոր պացիենտների հետ կապ հաստատելու համար։
+  </p>
+  <button
+    class="btn btn-primary"
+    type="button"
+    onclick="toggleAboutCard('dentist-more')"
+    aria-expanded="false"
+    aria-controls="dentist-more"
+    data-i18n="aboutReadMore">
+    Կարդալ ավելին
+  </button>
+  <div id="dentist-more" hidden>
+    <p data-i18n="aboutDentistsMore">
+      Ներկայացրեք ձեր տվյալները՝ համագործակցության հնարավորությունները քննարկելու համար։
+    </p>
+    <p data-i18n="aboutRegistrationFree">Գրանցումն անվճար է։</p>
+    <button
+      class="btn btn-secondary"
+      type="button"
+      onclick="openDoctorRegistration()"
+      data-i18n="doctorButton">
+      Գրանցվել որպես բժիշկ
+    </button>
+  </div>
+</article>
 
     <!-- CONTACT -->
     <section class="section contact-section" id="contact">
@@ -1935,6 +1933,16 @@
         panelTitle: "Դուք ատամնաբո՞ւյժ եք",
         panelText: "Եթե ցանկանում եք համագործակցել Dental Armenia-ի հետ, ուղարկեք ձեր տվյալները։",
         doctorButton: "Գրանցվել որպես բժիշկ",
+                aboutPatientsTitle: "Պացիենտների համար",
+        aboutPatientsText: "Մեր նպատակն է հեշտացնել ատամնաբույժ գտնելու գործընթացը։ Դուք կարող եք հայտնել ձեր կարիքը, իսկ մենք կօգնենք կողմնորոշվել հնարավոր տարբերակներում։",
+        aboutPatientsMore1: "Մենք օգնում ենք կողմնորոշվել ատամնաբուժական տարբեր ուղղություններում և կապ հաստատել համապատասխան մասնագետի հետ։",
+        aboutPatientsMore2: "Կարող եք գրել հայերեն, ռուսերեն կամ անգլերեն։",
+        aboutDentistsTitle: "Ատամնաբույժների համար",
+        aboutDentistsText: "Dental Armenia-ն առաջարկում է համագործակցություն ատամնաբույժներին՝ նոր պացիենտների հետ կապ հաստատելու համար։",
+        aboutDentistsMore: "Ներկայացրեք ձեր տվյալները՝ համագործակցության հնարավորությունները քննարկելու համար։",
+        aboutRegistrationFree: "Գրանցումն անվճար է։",
+        aboutReadMore: "Կարդալ ավելին",
+        aboutClose: "Փակել",
 
         contactEyebrow: "Կապ մեզ հետ",
         contactTitle: "Ունե՞ք հարց",
@@ -2048,6 +2056,18 @@
         panelTitle: "Вы стоматолог?",
         panelText: "Если хотите сотрудничать с Dental Armenia, отправьте свои данные.",
         doctorButton: "Зарегистрироваться как врач",
+        
+        aboutPatientsTitle: "Для пациентов",
+        aboutPatientsText: "Наша цель — упростить поиск стоматолога. Расскажите, какая помощь вам нужна, и мы поможем сориентироваться в доступных вариантах.",
+        aboutPatientsMore1: "Мы помогаем разобраться в различных направлениях стоматологии и связаться с подходящим специалистом.",
+        aboutPatientsMore2: "Вы можете написать нам на армянском, русском или английском языке.",
+        aboutDentistsTitle: "Для стоматологов",
+        aboutDentistsText: "Dental Armenia предлагает стоматологам сотрудничество для установления контакта с новыми пациентами.",
+        aboutDentistsMore: "Оставьте свои данные, чтобы обсудить возможности сотрудничества.",
+        aboutRegistrationFree: "Регистрация бесплатная.",
+        aboutReadMore: "Читать далее",
+        aboutClose: "Закрыть",
+
 
         contactEyebrow: "Свяжитесь с нами",
         contactTitle: "Есть вопросы?",
@@ -2161,6 +2181,18 @@
         panelTitle: "Are you a dentist?",
         panelText: "If you would like to work with Dental Armenia, submit your details.",
         doctorButton: "Register as a dentist",
+        
+        aboutPatientsTitle: "For patients",
+        aboutPatientsText: "Our goal is to make finding a dentist easier. Tell us what kind of care you need, and we will help you explore possible options.",
+        aboutPatientsMore1: "We help you explore different dental specialties and connect with a suitable professional.",
+        aboutPatientsMore2: "You can contact us in Armenian, Russian or English.",
+        aboutDentistsTitle: "For dentists",
+        aboutDentistsText: "Dental Armenia offers dentists an opportunity to connect with new patients.",
+        aboutDentistsMore: "Submit your details to discuss cooperation opportunities.",
+        aboutRegistrationFree: "Registration is free.",
+        aboutReadMore: "Read more",
+        aboutClose: "Close",
+
 
         contactEyebrow: "Contact us",
         contactTitle: "Have a question?",
