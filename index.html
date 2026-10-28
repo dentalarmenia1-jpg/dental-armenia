@@ -1135,6 +1135,25 @@
         transition-duration: 0.01ms !important;
       }
     }
+        /* REVIEWS */
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .review-card { display: flex; flex-direction: column; gap: 14px; padding: 26px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+    .review-stars { color: #e0a526; font-size: 19px; letter-spacing: 2px; }
+    .review-text { margin: 0; font-size: 14px; overflow-wrap: anywhere; }
+    .review-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .review-avatar { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; border-radius: 50%; color: var(--primary-dark); background: var(--primary-light); font-weight: 800; }
+    .review-author strong { display: block; font-size: 14px; }
+    .review-author small { display: block; color: var(--muted); font-size: 12px; }
+    .reviews-actions { display: flex; justify-content: center; margin-top: 28px; }
+    .reviews-empty { margin: 0 0 4px; color: var(--muted); text-align: center; }
+    .star-rating { position: relative; display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+    .form-group .star-rating input { position: absolute; width: 1px; min-height: 0; height: 1px; padding: 0; border: 0; opacity: 0; }
+    .form-group .star-rating label { display: inline-block; margin: 0; color: #c4d3ce; font-size: 36px; line-height: 1; cursor: pointer; transition: color 0.15s ease; }
+    .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #e0a526; }
+    .star-rating input:focus-visible + label { outline: 3px solid rgba(39, 121, 110, 0.35); outline-offset: 2px; border-radius: 6px; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    @media (max-width: 980px) { .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .reviews-grid { grid-template-columns: 1fr; gap: 14px; } }  
   </style>
 </head>
 
@@ -1468,7 +1487,21 @@
       </div>
     </section>
 
-
+    <!-- REVIEWS -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="reviewsEyebrow">Կարծիքներ</span>
+          <h2 data-i18n="reviewsTitle">Հաճախորդների կարծիքներ</h2>
+          <p data-i18n="reviewsText">Ի՞նչ են ասում մարդիկ Dental Armenia-ի մասին։</p>
+        </div>
+        <p class="reviews-empty" id="reviewsEmpty" hidden data-i18n="reviewsEmpty">Առայժմ կարծիքներ չկան։ Դարձեք առաջինը։</p>
+        <div class="reviews-grid" id="reviewsGrid"></div>
+        <div class="reviews-actions">
+          <button class="btn btn-primary" type="button" onclick="openModal('reviewModal')" data-i18n="reviewWriteButton">Թողնել կարծիք</button>
+        </div>
+      </div>
+    </section>
 <!-- ABOUT -->
 <section class="section" id="about">
   <div class="container">
@@ -1759,7 +1792,49 @@
       </form>
     </div>
   </div>
+  <!-- REVIEW MODAL -->
+  <div class="modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('reviewModal')" aria-label="Close">×</button>
+      <h2 id="reviewModalTitle" data-i18n="reviewModalTitle">Թողնել կարծիք</h2>
+      <p class="modal-intro" data-i18n="reviewModalIntro">Կիսվեք ձեր փորձով։ Կարծիքը կհրապարակվի ստուգումից հետո։</p>
 
+      <form id="reviewForm">
+        <input type="hidden" name="formType" value="review">
+
+        <div class="form-group">
+          <label for="reviewName" data-i18n="labelName">Անուն</label>
+          <input id="reviewName" name="name" type="text" autocomplete="name" required maxlength="100" data-i18n-placeholder="placeholderName" placeholder="Ձեր անունը">
+        </div>
+
+        <div class="form-group">
+          <label for="reviewCity" data-i18n="labelCityOptional">Քաղաք (ըստ ցանկության)</label>
+          <input id="reviewCity" name="city" type="text" autocomplete="address-level2" maxlength="100" data-i18n-placeholder="placeholderCity" placeholder="Օրինակ՝ Երևան">
+        </div>
+
+        <div class="form-group">
+          <label data-i18n="labelRating">Գնահատական</label>
+          <div class="star-rating" role="radiogroup">
+            <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1">★</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reviewText" data-i18n="labelReviewText">Ձեր կարծիքը</label>
+          <textarea id="reviewText" name="comment" required maxlength="800" data-i18n-placeholder="placeholderReviewText" placeholder="Գրեք ձեր կարծիքը"></textarea>
+        </div>
+
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button class="btn btn-primary form-submit" id="reviewSubmitButton" type="submit" data-i18n="reviewSubmit">Ուղարկել կարծիքը</button>
+        <div class="form-status" id="reviewFormStatus" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
   <!-- DOCTOR REGISTRATION MODAL -->
   <div
     class="modal"
@@ -1939,6 +2014,19 @@
         howEyebrow: "Ինչպես է աշխատում",
         howTitle: "Երեք պարզ քայլ",
         howText: "Ուղարկեք ձեր տվյալները, որպեսզի կարողանանք կապ հաստատել ձեզ հետ։",
+                  reviewsEyebrow: "Կարծիքներ",
+        reviewsTitle: "Հաճախորդների կարծիքներ",
+        reviewsText: "Ի՞նչ են ասում մարդիկ Dental Armenia-ի մասին։",
+        reviewsEmpty: "Առայժմ կարծիքներ չկան։ Դարձեք առաջինը։",
+        reviewWriteButton: "Թողնել կարծիք",
+        reviewModalTitle: "Թողնել կարծիք",
+        reviewModalIntro: "Կիսվեք ձեր փորձով։ Կարծիքը կհրապարակվի ստուգումից հետո։",
+        labelCityOptional: "Քաղաք (ըստ ցանկության)",
+        labelRating: "Գնահատական",
+        labelReviewText: "Ձեր կարծիքը",
+        placeholderReviewText: "Գրեք ձեր կարծիքը",
+        reviewSubmit: "Ուղարկել կարծիքը",
+        reviewThanks: "Շնորհակալություն։ Ձեր կարծիքը ստացվել է և կհրապարակվի ստուգումից հետո։",
         step1Title: "Ընտրեք ծառայությունը",
         step1Text: "Նշեք, թե ինչպիսի ատամնաբուժական օգնություն է ձեզ անհրաժեշտ։",
         step2Title: "Ուղարկեք հայտը",
@@ -2096,6 +2184,19 @@ dentistMoreFreeTitle: "Անվճար գրանցում",
         howEyebrow: "Как это работает",
         howTitle: "Три простых шага",
         howText: "Оставьте свои данные, чтобы мы могли связаться с вами.",
+                  reviewsEyebrow: "Отзывы",
+        reviewsTitle: "Отзывы пациентов",
+        reviewsText: "Что говорят о Dental Armenia.",
+        reviewsEmpty: "Пока нет отзывов. Станьте первым.",
+        reviewWriteButton: "Оставить отзыв",
+        reviewModalTitle: "Оставить отзыв",
+        reviewModalIntro: "Поделитесь своим опытом. Отзыв будет опубликован после проверки.",
+        labelCityOptional: "Город (необязательно)",
+        labelRating: "Оценка",
+        labelReviewText: "Ваш отзыв",
+        placeholderReviewText: "Напишите ваш отзыв",
+        reviewSubmit: "Отправить отзыв",
+        reviewThanks: "Спасибо! Ваш отзыв получен и будет опубликован после проверки.",
         step1Title: "Выберите услугу",
         step1Text: "Укажите, какая стоматологическая помощь вам нужна.",
         step2Title: "Отправьте заявку",
@@ -2254,6 +2355,19 @@ dentistMoreFreeTitle: "Бесплатная регистрация",
         howEyebrow: "How it works",
         howTitle: "Three simple steps",
         howText: "Share your details so we can get in touch with you.",
+                  reviewsEyebrow: "Reviews",
+        reviewsTitle: "Patient reviews",
+        reviewsText: "What people say about Dental Armenia.",
+        reviewsEmpty: "No reviews yet. Be the first.",
+        reviewWriteButton: "Leave a review",
+        reviewModalTitle: "Leave a review",
+        reviewModalIntro: "Share your experience. Your review will be published after moderation.",
+        labelCityOptional: "City (optional)",
+        labelRating: "Rating",
+        labelReviewText: "Your review",
+        placeholderReviewText: "Write your review",
+        reviewSubmit: "Submit review",
+        reviewThanks: "Thank you! Your review was received and will be published after moderation.",
         step1Title: "Choose a service",
         step1Text: "Tell us what kind of dental care you need.",
         step2Title: "Send a request",
@@ -2555,12 +2669,12 @@ function toggleAboutCard(cardId) {
     setLanguage("hy");
   </script>
 
-  <!-- GOOGLE SHEETS FORM SUBMISSION -->
+   <!-- GOOGLE SHEETS FORM SUBMISSION -->
   <script>
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbxKjRnylZ4laXXK3Cslfmwg5cPIRkWeLoA5B193i60AiPQDJAg_qDhG6WGWxnKBGkY9/exec";
 
-    async function submitToSheet(form, statusElement, submitButton) {
+    async function submitToSheet(form, statusElement, submitButton, successKey = "formRequestSent") {
       const originalButtonText = submitButton.textContent;
       const formData = new FormData(form);
       const data = new URLSearchParams();
@@ -2588,7 +2702,7 @@ function toggleAboutCard(cardId) {
         });
 
         statusElement.textContent =
-          translations[currentLanguage].formRequestSent;
+          translations[currentLanguage][successKey];
         statusElement.classList.add("visible");
 
         form.reset();
@@ -2601,8 +2715,11 @@ function toggleAboutCard(cardId) {
       } finally {
         submitButton.disabled = false;
 
-        const buttonKey =
-          form.id === "patientForm" ? "patientSubmit" : "doctorSubmit";
+        const buttonKey = {
+          patientForm: "patientSubmit",
+          doctorForm: "doctorSubmit",
+          reviewForm: "reviewSubmit"
+        }[form.id];
 
         submitButton.textContent =
           translations[currentLanguage][buttonKey] || originalButtonText;
@@ -2628,6 +2745,77 @@ function toggleAboutCard(cardId) {
         document.getElementById("doctorSubmitButton")
       );
     });
+
+    document.getElementById("reviewForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      submitToSheet(
+        event.currentTarget,
+        document.getElementById("reviewFormStatus"),
+        document.getElementById("reviewSubmitButton"),
+        "reviewThanks"
+      );
+    });
+
+    function buildReviewCard(item) {
+      const rating = Math.min(5, Math.max(1, parseInt(item.rating, 10) || 5));
+      const name = String(item.name || "").trim();
+
+      const card = document.createElement("article");
+      card.className = "review-card";
+
+      const stars = document.createElement("div");
+      stars.className = "review-stars";
+      stars.setAttribute("role", "img");
+      stars.setAttribute("aria-label", rating + " / 5");
+      stars.textContent = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+      const text = document.createElement("p");
+      text.className = "review-text";
+      text.textContent = String(item.text || "");
+
+      const author = document.createElement("div");
+      author.className = "review-author";
+
+      const avatar = document.createElement("div");
+      avatar.className = "review-avatar";
+      avatar.textContent = (name.charAt(0) || "•").toUpperCase();
+
+      const info = document.createElement("div");
+      const strong = document.createElement("strong");
+      strong.textContent = name;
+      info.appendChild(strong);
+
+      const city = String(item.city || "").trim();
+      if (city) {
+        const small = document.createElement("small");
+        small.textContent = city;
+        info.appendChild(small);
+      }
+
+      author.append(avatar, info);
+      card.append(stars, text, author);
+      return card;
+    }
+
+    async function loadReviews() {
+      const grid = document.getElementById("reviewsGrid");
+      const empty = document.getElementById("reviewsEmpty");
+
+      try {
+        const response = await fetch(SCRIPT_URL + "?action=reviews");
+        const list = await response.json();
+
+        grid.textContent = "";
+        list.forEach((item) => grid.appendChild(buildReviewCard(item)));
+        empty.hidden = list.length > 0;
+      } catch (error) {
+        console.error("Could not load reviews:", error);
+        empty.hidden = false;
+      }
+    }
+
+    loadReviews();
   </script>
 
   <!-- TALKTG WIDGET -->
