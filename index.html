@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Dental Armenia — Ատամնաբույժներ և ատամնաբուժական ծառայություններ Հայաստանում</title>
+    <link rel="canonical" href="https://dentalarmenia1-jpg.github.io/dental-armenia/">
 
   <meta name="theme-color" content="#eaf5f2">
 
@@ -2704,6 +2705,9 @@ function toggleAboutCard(cardId) {
         statusElement.textContent =
           translations[currentLanguage][successKey];
         statusElement.classList.add("visible");
+                  if (typeof gtag === "function") {
+          gtag("event", "generate_lead", { form_type: form.id });
+        }
 
         form.reset();
       } catch (error) {
