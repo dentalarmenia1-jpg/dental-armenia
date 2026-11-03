@@ -2896,7 +2896,10 @@ function toggleAboutCard(cardId) {
     data-site-id="cmvmczrk20003k108aaeiccc5"
     async
   ></script>
-      <script>
+       <script>
+    // 5 մմ ≈ 19 px. Ավելացնելու կամ պակասեցնելու համար փոխեք այս թիվը
+    const EXTRA_LIFT_PX = 19;
+
     function liftWidgetButtons() {
       if (window.innerWidth > 760) return;
 
@@ -2904,16 +2907,13 @@ function toggleAboutCard(cardId) {
       if (!bar) return;
 
       const barTop = bar.getBoundingClientRect().top;
-      const lift = Math.round(window.innerHeight - barTop + 12);
+      const lift = Math.round(window.innerHeight - barTop + 12 + EXTRA_LIFT_PX);
 
       document.querySelectorAll("body *").forEach((el) => {
         if (bar.contains(el) || el.closest(".modal") || el.closest(".site-header")) return;
         if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
+        if (getComputedStyle(el).position !== "fixed") return;
 
-        const style = getComputedStyle(el);
-        if (style.position !== "fixed") return;
-
-        // շարժում ենք միայն ամենաարտաքին fixed տարրը
         let p = el.parentElement;
         while (p && p !== document.body) {
           if (getComputedStyle(p).position === "fixed") return;
@@ -2922,22 +2922,22 @@ function toggleAboutCard(cardId) {
 
         const r = el.getBoundingClientRect();
         if (r.width === 0 || r.height === 0 || r.width > 420 || r.height > 420) return;
-
-        // միայն էկրանի ներքևում գտնվող կոճակները
-        if (r.bottom < window.innerHeight - 160) return;
+        if (r.bottom < window.innerHeight - 160 - EXTRA_LIFT_PX) return;
 
         el.style.setProperty("bottom", lift + "px", "important");
         el.style.setProperty("top", "auto", "important");
       });
     }
 
-    let liftTries = 0;
-    const liftTimer = setInterval(() => {
-      liftWidgetButtons();
-      if (++liftTries >= 20) clearInterval(liftTimer);
-    }, 1000);
-    window.addEventListener("resize", liftWidgetButtons);
-  </script>
+    // Արձագանքում է հենց նոր տարրի ավելանալուն, առանց սպասելու
+    new MutationObserver(liftWidgetButtons).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
 
+    window.addEventListener("load", liftWidgetButtons);
+    window.addEventListener("resize", liftWidgetButtons);
+    liftWidgetButtons();
+  </script>
 </body>
 </html>
