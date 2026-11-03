@@ -2896,6 +2896,48 @@ function toggleAboutCard(cardId) {
     data-site-id="cmvmczrk20003k108aaeiccc5"
     async
   ></script>
+      <script>
+    function liftWidgetButtons() {
+      if (window.innerWidth > 760) return;
+
+      const bar = document.querySelector(".sticky-contact");
+      if (!bar) return;
+
+      const barTop = bar.getBoundingClientRect().top;
+      const lift = Math.round(window.innerHeight - barTop + 12);
+
+      document.querySelectorAll("body *").forEach((el) => {
+        if (bar.contains(el) || el.closest(".modal") || el.closest(".site-header")) return;
+        if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
+
+        const style = getComputedStyle(el);
+        if (style.position !== "fixed") return;
+
+        // շարժում ենք միայն ամենաարտաքին fixed տարրը
+        let p = el.parentElement;
+        while (p && p !== document.body) {
+          if (getComputedStyle(p).position === "fixed") return;
+          p = p.parentElement;
+        }
+
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 || r.height === 0 || r.width > 420 || r.height > 420) return;
+
+        // միայն էկրանի ներքևում գտնվող կոճակները
+        if (r.bottom < window.innerHeight - 160) return;
+
+        el.style.setProperty("bottom", lift + "px", "important");
+        el.style.setProperty("top", "auto", "important");
+      });
+    }
+
+    let liftTries = 0;
+    const liftTimer = setInterval(() => {
+      liftWidgetButtons();
+      if (++liftTries >= 20) clearInterval(liftTimer);
+    }, 1000);
+    window.addEventListener("resize", liftWidgetButtons);
+  </script>
 
 </body>
 </html>
