@@ -836,7 +836,7 @@
       border: 0;
     }
 
-    .form-submit:disabled {
+      .form-submit:disabled {
       cursor: wait;
       opacity: 0.65;
       transform: none;
@@ -850,7 +850,8 @@
       border-radius: 11px;
       color: var(--primary-dark);
       background: var(--primary-light);
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: 600;
       overflow-wrap: anywhere;
     }
 
@@ -1164,6 +1165,43 @@
     .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     @media (max-width: 980px) { .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 760px) { .reviews-grid { grid-template-columns: 1fr; gap: 14px; } }  
+      /* STICKY CONTACT BAR */
+.sticky-contact {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sticky-contact a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease;
+}
+.sticky-contact a:hover { transform: translateY(-2px); }
+.sticky-call { background: var(--primary); }
+.sticky-whatsapp { background: #25d366; }
+body.modal-open .sticky-contact { display: none; }
+@media (max-width: 760px) {
+  .sticky-contact {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    flex-direction: row;
+  }
+  .sticky-contact a { flex: 1; }
+}
   </style>
 </head>
 
@@ -1690,6 +1728,10 @@
       </div>
     </div>
   </footer>
+    <div class="sticky-contact">
+  <a class="sticky-call" href="tel:+37455466266" data-i18n="stickyCall">📞 Զանգել</a>
+  <a class="sticky-whatsapp" href="https://wa.me/37455466266" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+</div>
 
   <!-- PATIENT REQUEST MODAL -->
   <div
@@ -2149,7 +2191,9 @@ dentistMoreFreeTitle: "Անվճար գրանցում",
                 formRequestSent: "Շնորհակալություն։ Ձեր հայտը ստացվել է, շուտով կապ կհաստատենք։",
         formError: "Հայտը ուղարկել չհաջողվեց։ Խնդրում ենք փորձել կրկին կամ գրել մեզ WhatsApp-ով։",
         menuOpen: "Բացել ցանկը",
-        menuClose: "Փակել ցանկը"
+        menuClose: "Փակել ցանկը",
+        stickyCall: "📞 Զանգել",
+        phoneInvalid: "Մուտքագրեք ճիշտ հեռախոսահամար, օրինակ՝ +374 55 466266"
       },
 
       ru: {
@@ -2320,8 +2364,11 @@ dentistMoreFreeTitle: "Бесплатная регистрация",
                 formRequestSent: "Спасибо! Ваша заявка получена, мы скоро свяжемся с вами.",
         formError: "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.",
         menuOpen: "Открыть меню",
-        menuClose: "Закрыть меню"
-      },
+        menuClose: "Закрыть меню",
+        stickyCall: "📞 Позвонить",
+        phoneInvalid: "Введите корректный номер, например: +374 55 466266"
+      }, 
+    
 
       en: {
         pageTitle: "Dental Armenia — Find a Dentist in Armenia",
@@ -2495,9 +2542,11 @@ dentistMoreFreeTitle: "Free registration",
                 formRequestSent: "Thank you! Your request was received, we will contact you soon.",
         formError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         menuOpen: "Open menu",
-        menuClose: "Close menu"
+        menuClose: "Close menu",
+        stickyCall: "📞 Call us",
+        phoneInvalid: "Enter a valid phone number, e.g. +374 55 466266"
       }
-    };
+    };  
 
     let currentLanguage = "hy";
 
@@ -2692,7 +2741,16 @@ function toggleAboutCard(cardId) {
       for (const [key, value] of formData.entries()) {
         data.append(key, String(value).trim());
       }
-
+      const phoneInput = form.querySelector('input[name="phone"]');
+      if (phoneInput) {
+        const digits = phoneInput.value.replace(/\D/g, "");
+        if (digits.length < 8 || digits.length > 15 || !/^[+\d\s()\-]+$/.test(phoneInput.value)) {
+          statusElement.textContent = translations[currentLanguage].phoneInvalid;
+          statusElement.classList.add("visible", "error");
+          statusElement.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+      }
       statusElement.classList.remove("visible", "error");
       statusElement.textContent = "";
       submitButton.disabled = true;
@@ -2714,6 +2772,7 @@ function toggleAboutCard(cardId) {
         statusElement.textContent =
           translations[currentLanguage][successKey];
         statusElement.classList.add("visible");
+                  statusElement.scrollIntoView({ behavior: "smooth", block: "center" });
                   if (typeof gtag === "function") {
           gtag("event", "generate_lead", { form_type: form.id });
         }
