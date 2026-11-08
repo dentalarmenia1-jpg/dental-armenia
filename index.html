@@ -1854,15 +1854,16 @@ body.modal-open .sticky-contact { display: none; }
           ></textarea>
         </div>
 
-        <button
-          class="btn btn-primary form-submit"
-                    <label class="consent-row">
+                <label class="consent-row">
           <input type="checkbox" name="consent" value="yes" required>
           <span>
             <span data-i18n="consentText">Համաձայն եմ, որ իմ տվյալները փոխանցվեն համապատասխան ատամնաբույժին։</span>
             <a href="#" onclick="openModal('privacyModal'); return false;" data-i18n="privacyLink">Գաղտնիության քաղաքականություն</a>
           </span>
         </label>
+
+        <button
+          class="btn btn-primary form-submit"
           id="patientSubmitButton"
           type="submit"
           data-i18n="patientSubmit"
