@@ -2930,7 +2930,15 @@ function toggleAboutCard(cardId) {
     }
 
     // Արձագանքում է հենց նոր տարրի ավելանալուն, առանց սպասելու
-    new MutationObserver(liftWidgetButtons).observe(document.body, {
+       let liftQueued = false;
+    new MutationObserver(() => {
+      if (liftQueued) return;
+      liftQueued = true;
+      requestAnimationFrame(() => {
+        liftQueued = false;
+        liftWidgetButtons();
+      });
+    }).observe(document.body, {
       childList: true,
       subtree: true
     });
