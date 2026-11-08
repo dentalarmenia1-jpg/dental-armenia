@@ -1202,6 +1202,32 @@ body.modal-open .sticky-contact { display: none; }
   }
   .sticky-contact a { flex: 1; }
 }
+       .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .consent-row input {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+    }
+    .consent-row a,
+    .privacy-link {
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .privacy-content p {
+      color: var(--muted);
+      font-size: 14px;
+    }   
   </style>
 </head>
 
@@ -1722,6 +1748,7 @@ body.modal-open .sticky-contact { display: none; }
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">🦷 Dental Armenia</div>
+              <a href="#" class="privacy-link" onclick="openModal('privacyModal'); return false;" data-i18n="privacyLink">Գաղտնիության քաղաքականություն</a>
       <div class="footer-note">
         <span data-i18n="footerText">Ատամնաբույժ գտնելու հարցում Հայաստանում</span>
         · © <span id="year"></span>
@@ -1829,6 +1856,13 @@ body.modal-open .sticky-contact { display: none; }
 
         <button
           class="btn btn-primary form-submit"
+                    <label class="consent-row">
+          <input type="checkbox" name="consent" value="yes" required>
+          <span>
+            <span data-i18n="consentText">Համաձայն եմ, որ իմ տվյալները փոխանցվեն համապատասխան ատամնաբույժին։</span>
+            <a href="#" onclick="openModal('privacyModal'); return false;" data-i18n="privacyLink">Գաղտնիության քաղաքականություն</a>
+          </span>
+        </label>
           id="patientSubmitButton"
           type="submit"
           data-i18n="patientSubmit"
@@ -2020,7 +2054,19 @@ body.modal-open .sticky-contact { display: none; }
       </form>
     </div>
   </div>
-
+  <!-- PRIVACY MODAL -->
+  <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle" aria-hidden="true">
+    <div class="modal-content privacy-content">
+      <button type="button" class="modal-close" onclick="closeModal('privacyModal')" aria-label="Close">×</button>
+      <h2 id="privacyModalTitle" data-i18n="privacyTitle">Գաղտնիության քաղաքականություն</h2>
+      <p data-i18n="privacyP1"></p>
+      <p data-i18n="privacyP2"></p>
+      <p data-i18n="privacyP3"></p>
+      <p data-i18n="privacyP4"></p>
+      <p data-i18n="privacyP5"></p>
+      <p data-i18n="privacyP6"></p>
+    </div>
+  </div>
   <!-- LANGUAGE / MENU / MODALS -->
   <script>
     const translations = {
@@ -2187,6 +2233,15 @@ dentistMoreFreeTitle: "Անվճար գրանցում",
         patientSubmit: "Ուղարկել հայտը",
         doctorSubmit: "Ուղարկել տվյալները",
         requiredNote: "* Խնդրում ենք լրացնել պարտադիր դաշտերը։",
+                  consentText: "Համաձայն եմ, որ իմ տվյալները փոխանցվեն համապատասխան ատամնաբույժին։",
+        privacyLink: "Գաղտնիության քաղաքականություն",
+        privacyTitle: "Գաղտնիության քաղաքականություն",
+        privacyP1: "Dental Armenia-ն օգնում է գտնել ատամնաբույժ Հայաստանում։ Այս էջը բացատրում է, թե ինչ տվյալներ ենք հավաքում և ինչպես ենք դրանք օգտագործում։",
+        privacyP2: "Ինչ տվյալներ ենք հավաքում։ Ձեր անունը, հեռախոսահամարը, քաղաքը, անհրաժեշտ ծառայությունը և մեկնաբանությունը, որ լրացնում եք ձևում։ Բժիշկների դեպքում՝ նաև մասնագիտացումը և կլինիկայի հասցեն։",
+        privacyP3: "Ինչի համար ենք օգտագործում։ Ձեզ հետ կապվելու, ձեր կարիքը հասկանալու և համապատասխան ատամնաբույժ գտնելուն օգնելու համար։",
+        privacyP4: "Ում ենք փոխանցում։ Միայն ձեր համաձայնությամբ՝ համապատասխան գործընկեր ատամնաբույժին կամ կլինիկային, որպեսզի նա կապվի ձեզ հետ։ Dental Armenia-ն միջնորդ է, և գործընկեր ատամնաբույժները կարող են վճար վճարել մեզ պացիենտներ ուղղորդելու համար։ Ձեր տվյալները այլ նպատակներով չենք վաճառում։",
+        privacyP5: "Վիճակագրություն։ Կայքը օգտագործում է Google Analytics՝ այցելությունների թիվը հաշվելու համար, և զրուցարանի վիջեթ (TalkTG)։ Դրանք կարող են օգտագործել cookie-ներ։",
+        privacyP6: "Ձեր իրավունքները։ Ցանկացած ժամանակ կարող եք խնդրել ուղղել կամ ջնջել ձեր տվյալները՝ գրելով մեզ WhatsApp-ով +374 55 466266։ Տվյալները պահում ենք միայն այնքան, որքան անհրաժեշտ է նշված նպատակների համար։",
         sending: "Ուղարկվում է…",
                 formRequestSent: "Շնորհակալություն։ Ձեր հայտը ստացվել է, շուտով կապ կհաստատենք։",
         formError: "Հայտը ուղարկել չհաջողվեց։ Խնդրում ենք փորձել կրկին կամ գրել մեզ WhatsApp-ով։",
@@ -2360,6 +2415,15 @@ dentistMoreFreeTitle: "Бесплатная регистрация",
         patientSubmit: "Отправить заявку",
         doctorSubmit: "Отправить данные",
         requiredNote: "* Пожалуйста, заполните обязательные поля.",
+                  consentText: "Я согласен(на) на передачу моих данных подходящему стоматологу.",
+        privacyLink: "Политика конфиденциальности",
+        privacyTitle: "Политика конфиденциальности",
+        privacyP1: "Dental Armenia помогает найти стоматолога в Армении. На этой странице описано, какие данные мы собираем и как их используем.",
+        privacyP2: "Какие данные мы собираем. Ваше имя, номер телефона, город, необходимую услугу и комментарий, которые вы указываете в форме. Для врачей — также специализацию и адрес клиники.",
+        privacyP3: "Для чего используем. Чтобы связаться с вами, понять ваш запрос и помочь найти подходящего стоматолога.",
+        privacyP4: "Кому передаём. Только с вашего согласия — подходящему стоматологу-партнёру или клинике, чтобы они связались с вами. Dental Armenia является посредником, и стоматологи-партнёры могут оплачивать нам направление пациентов. Мы не продаём ваши данные для других целей.",
+        privacyP5: "Статистика. Сайт использует Google Analytics для подсчёта посещений и виджет чата (TalkTG). Они могут использовать cookie.",
+        privacyP6: "Ваши права. В любой момент вы можете попросить исправить или удалить ваши данные, написав нам в WhatsApp: +374 55 466266. Мы храним данные только столько, сколько необходимо для указанных целей.",
         sending: "Отправка…",
                 formRequestSent: "Спасибо! Ваша заявка получена, мы скоро свяжемся с вами.",
         formError: "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.",
@@ -2538,6 +2602,15 @@ dentistMoreFreeTitle: "Free registration",
         patientSubmit: "Submit request",
         doctorSubmit: "Submit details",
         requiredNote: "* Please complete all required fields.",
+                  consentText: "I agree that my details may be shared with a suitable dentist.",
+        privacyLink: "Privacy policy",
+        privacyTitle: "Privacy policy",
+        privacyP1: "Dental Armenia helps you find a dentist in Armenia. This page explains what data we collect and how we use it.",
+        privacyP2: "What we collect. Your name, phone number, city, the service you need and the comment you enter in the form. For dentists, also specialty and clinic address.",
+        privacyP3: "What we use it for. To contact you, understand your request and help you find a suitable dentist.",
+        privacyP4: "Who we share it with. Only with your consent, a suitable partner dentist or clinic, so they can contact you. Dental Armenia is an intermediary, and partner dentists may pay us for referring patients. We do not sell your data for other purposes.",
+        privacyP5: "Analytics. The site uses Google Analytics to count visits and a chat widget (TalkTG). They may use cookies.",
+        privacyP6: "Your rights. You can ask us at any time to correct or delete your data by messaging us on WhatsApp: +374 55 466266. We keep data only as long as needed for the purposes above.",
         sending: "Sending…",
                 formRequestSent: "Thank you! Your request was received, we will contact you soon.",
         formError: "The request could not be sent. Please try again or contact us on WhatsApp.",
