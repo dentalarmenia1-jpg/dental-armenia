@@ -2838,6 +2838,13 @@ function toggleAboutCard(cardId) {
       const originalButtonText = submitButton.textContent;
       const formData = new FormData(form);
       const data = new URLSearchParams();
+           if (data.website) {
+     return ContentService.createTextOutput(JSON.stringify({ success: true }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+   if (data.formType === "patient" && data.consent !== "yes") {
+     throw new Error("Համաձայնությունը պարտադիր է։");
+   }
 
       for (const [key, value] of formData.entries()) {
         data.append(key, String(value).trim());
