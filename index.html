@@ -2804,8 +2804,35 @@ function toggleAboutCard(cardId) {
 
    <!-- GOOGLE SHEETS FORM SUBMISSION -->
   <script>
-   const SCRIPT_URL =
+     const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxm08n62-4OvnldmgUjQY_3Z8wxcGe2Fq8wG0Fl5GcIYAF83X1A9RRK4O-n_F5MY5NF/exec";
+
+    // ===== Գովազդի աղբյուրի հիշողություն (UTM) =====
+    const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "fbclid", "gclid"];
+
+    function captureUtm() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const found = {};
+        UTM_KEYS.forEach((key) => {
+          const value = params.get(key);
+          if (value) found[key] = value.slice(0, 100);
+        });
+        if (Object.keys(found).length) {
+          localStorage.setItem("da_utm", JSON.stringify(found));
+        }
+      } catch (error) {}
+    }
+
+    function getUtm() {
+      try {
+        return JSON.parse(localStorage.getItem("da_utm") || "{}");
+      } catch (error) {
+        return {};
+      }
+    }
+
+    captureUtm();
 
     async function submitToSheet(form, statusElement, submitButton, successKey = "formRequestSent") {
       const originalButtonText = submitButton.textContent;
@@ -2815,6 +2842,13 @@ function toggleAboutCard(cardId) {
       for (const [key, value] of formData.entries()) {
         data.append(key, String(value).trim());
       }
+              const utm = getUtm();
+      data.append("utm_source", utm.utm_source || "");
+      data.append("utm_medium", utm.utm_medium || "");
+      data.append("utm_campaign", utm.utm_campaign || "");
+      data.append("utm_content", utm.utm_content || "");
+      data.append("click_id", utm.fbclid || utm.gclid || "");
+      data.append("referrer", (document.referrer || "").slice(0, 200));
       const phoneInput = form.querySelector('input[name="phone"]');
       if (phoneInput) {
         const digits = phoneInput.value.replace(/\D/g, "");
@@ -2962,6 +2996,15 @@ function toggleAboutCard(cardId) {
     }
 
     loadReviews();
+          document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"]').forEach((link) => {
+      link.addEventListener("click", () => {
+        if (typeof gtag === "function") {
+          gtag("event", "contact_click", {
+            method: link.href.startsWith("tel:") ? "phone" : "whatsapp"
+          });
+        }
+      });
+    });
   </script>
 
   <!-- TALKTG WIDGET -->
