@@ -333,7 +333,7 @@
       rgba(237, 247, 243, 0.45) 30%,
       rgba(237, 247, 243, 0.05) 65%
     ),
-   url("hero.webp")
+  url("hero.webp") center / cover no-repeat;
 }
 
     .hero-content {
@@ -1003,7 +1003,7 @@
             rgba(237, 247, 243, 0.96),
             rgba(237, 247, 243, 0.83)
           ),
-         url("hero.webp")
+         url("hero.webp") center / cover no-repeat;
       }
 
       .hero-content {
@@ -2089,7 +2089,7 @@ body.modal-open .sticky-contact { display: none; }
   </div>
   <!-- LANGUAGE / MENU / MODALS -->
   <script>
-    const  = {
+   const translations = {
       hy: {
      pageTitle: "Ատամնաբույժ Երևանում և Հայաստանում | Dental Armenia",
         brandSubtitle: "Ատամնաբույժ գտնել Հայաստանում",
@@ -2860,13 +2860,7 @@ function toggleAboutCard(cardId) {
       const originalButtonText = submitButton.textContent;
       const formData = new FormData(form);
       const data = new URLSearchParams();
-           if (data.website) {
-     return ContentService.createTextOutput(JSON.stringify({ success: true }))
-       .setMimeType(ContentService.MimeType.JSON);
-   }
-   if (data.formType === "patient" && data.consent !== "yes") {
-     throw new Error("Համաձայնությունը պարտադիր է։");
-   }
+          
 
       for (const [key, value] of formData.entries()) {
         data.append(key, String(value).trim());
