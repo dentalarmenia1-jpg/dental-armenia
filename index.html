@@ -3061,56 +3061,79 @@ function toggleAboutCard(cardId) {
     data-site-id="cmvmczrk20003k108aaeiccc5"
     async
   ></script>
-       <script>
-    // 5 մմ ≈ 19 px. Ավելացնելու կամ պակասեցնելու համար փոխեք այս թիվը
-    const EXTRA_LIFT_PX = 19;
+      <script>
+  const EXTRA_LIFT_PX = 19;
+  const liftedEls = new Set();
 
-    function liftWidgetButtons() {
-      if (window.innerWidth > 760) return;
+  function liftWidgetButtons() {
+    const bar = document.querySelector(".sticky-contact");
+    if (!bar) return;
 
-      const bar = document.querySelector(".sticky-contact");
-      if (!bar) return;
-
-      const barTop = bar.getBoundingClientRect().top;
-      const lift = Math.round(window.innerHeight - barTop + 12 + EXTRA_LIFT_PX);
-
-      document.querySelectorAll("body *").forEach((el) => {
-        if (bar.contains(el) || el.closest(".modal") || el.closest(".site-header")) return;
-        if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
-        if (getComputedStyle(el).position !== "fixed") return;
-
-        let p = el.parentElement;
-        while (p && p !== document.body) {
-          if (getComputedStyle(p).position === "fixed") return;
-          p = p.parentElement;
-        }
-
-        const r = el.getBoundingClientRect();
-        if (r.width === 0 || r.height === 0 || r.width > 420 || r.height > 420) return;
-        if (r.bottom < window.innerHeight - 160 - EXTRA_LIFT_PX) return;
-
-        el.style.setProperty("bottom", lift + "px", "important");
-        el.style.setProperty("top", "auto", "important");
-      });
+    if (window.innerWidth > 760) {
+      document.body.classList.remove("chat-open");
+      return;
     }
 
-    // Արձագանքում է հենց նոր տարրի ավելանալուն, առանց սպասելու
-       let liftQueued = false;
-    new MutationObserver(() => {
-      if (liftQueued) return;
-      liftQueued = true;
-      requestAnimationFrame(() => {
-        liftQueued = false;
-        liftWidgetButtons();
-      });
-    }).observe(document.body, {
-      childList: true,
-      subtree: true
+    // Գտնում ենք բոլոր թռչող (fixed) տարրերը, որոնք մերը չեն
+    const fixedEls = [];
+    document.querySelectorAll("body *").forEach((el) => {
+      if (bar.contains(el) || el.closest(".modal") || el.closest(".site-header")) return;
+      if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
+      if (getComputedStyle(el).position !== "fixed") return;
+
+      let p = el.parentElement;
+      while (p && p !== document.body) {
+        if (getComputedStyle(p).position === "fixed") return;
+        p = p.parentElement;
+      }
+      fixedEls.push(el);
     });
 
-    window.addEventListener("load", liftWidgetButtons);
-    window.addEventListener("resize", liftWidgetButtons);
-    liftWidgetButtons();
-  </script>
+    // Եթե կա մեծ թռչող տարր (բացված չատ), ոչինչ չենք շարժում
+    const chatOpen = fixedEls.some((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 0 && r.height > 420;
+    });
+
+    if (chatOpen) {
+      document.body.classList.add("chat-open");
+      liftedEls.forEach((el) => {
+        el.style.removeProperty("bottom");
+        el.style.removeProperty("top");
+      });
+      liftedEls.clear();
+      return;
+    }
+
+    document.body.classList.remove("chat-open");
+
+    const barTop = bar.getBoundingClientRect().top;
+    const lift = Math.round(window.innerHeight - barTop + 12 + EXTRA_LIFT_PX);
+
+    fixedEls.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0 || r.width > 420) return;
+      if (r.bottom < window.innerHeight - 160 - EXTRA_LIFT_PX) return;
+
+      el.style.setProperty("bottom", lift + "px", "important");
+      el.style.setProperty("top", "auto", "important");
+      liftedEls.add(el);
+    });
+  }
+
+  let liftQueued = false;
+  new MutationObserver(() => {
+    if (liftQueued) return;
+    liftQueued = true;
+    requestAnimationFrame(() => {
+      liftQueued = false;
+      liftWidgetButtons();
+    });
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
+
+  window.addEventListener("load", liftWidgetButtons);
+  window.addEventListener("resize", liftWidgetButtons);
+  liftWidgetButtons();
+</script>
 </body>
 </html>
