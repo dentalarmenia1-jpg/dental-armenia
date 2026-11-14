@@ -1206,19 +1206,21 @@
 .sticky-contact a:hover { transform: translateY(-2px); }
 .sticky-call { background: var(--primary); }
 .sticky-whatsapp { background: #25d366; }
+.sticky-telegram { background: #229ed9; }
 body.modal-open .sticky-contact { display: none; }
 @media (max-width: 760px) {
   .sticky-contact {
     left: 12px;
-    right: 84px;
+    right: 12px;
     bottom: 12px;
     flex-direction: row;
+    gap: 8px;
   }
   .sticky-contact a {
     flex: 1;
-    min-height: 48px;
-    padding: 10px 8px;
-    font-size: 13px;
+    min-height: 46px;
+    padding: 10px 6px;
+    font-size: 12px;
   }
 }
        .consent-row {
@@ -1805,9 +1807,10 @@ body.modal-open .sticky-contact { display: none; }
       </div>
     </div>
   </footer>
-    <div class="sticky-contact">
+   <div class="sticky-contact">
   <a class="sticky-call" href="tel:+37455466266" data-i18n="stickyCall">📞 Զանգել</a>
   <a class="sticky-whatsapp" href="https://wa.me/37455466266" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+  <a class="sticky-telegram" href="https://t.me/dentalarmenia1" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
 </div>
 
   <!-- PATIENT REQUEST MODAL -->
@@ -2292,7 +2295,7 @@ dentistMoreFreeTitle: "Անվճար գրանցում",
         privacyP2: "Ինչ տվյալներ ենք հավաքում։ Ձեր անունը, հեռախոսահամարը, քաղաքը, անհրաժեշտ ծառայությունը և մեկնաբանությունը, որ լրացնում եք ձևում։ Բժիշկների դեպքում՝ նաև մասնագիտացումը և կլինիկայի հասցեն։",
         privacyP3: "Ինչի համար ենք օգտագործում։ Ձեզ հետ կապվելու, ձեր կարիքը հասկանալու և համապատասխան ատամնաբույժ գտնելուն օգնելու համար։",
         privacyP4: "Ում ենք փոխանցում։ Միայն ձեր համաձայնությամբ՝ համապատասխան գործընկեր ատամնաբույժին կամ կլինիկային, որպեսզի նա կապվի ձեզ հետ։ Dental Armenia-ն միջնորդ է, և գործընկեր ատամնաբույժները կարող են վճար վճարել մեզ պացիենտներ ուղղորդելու համար։ Ձեր տվյալները այլ նպատակներով չենք վաճառում։",
-        privacyP5: "Վիճակագրություն։ Կայքը օգտագործում է Google Analytics՝ այցելությունների թիվը հաշվելու համար, և զրուցարանի վիջեթ (TalkTG)։ Դրանք կարող են օգտագործել cookie-ներ։",
+               privacyP5: "Վիճակագրություն։ Կայքը օգտագործում է Google Analytics՝ այցելությունների թիվը հաշվելու համար։ Այն կարող է օգտագործել cookie-ներ։",
         privacyP6: "Ձեր իրավունքները։ Ցանկացած ժամանակ կարող եք խնդրել ուղղել կամ ջնջել ձեր տվյալները՝ գրելով մեզ WhatsApp-ով +374 55 466266։ Տվյալները պահում ենք միայն այնքան, որքան անհրաժեշտ է նշված նպատակների համար։",
         sending: "Ուղարկվում է…",
                 formRequestSent: "Շնորհակալություն։ Ձեր հայտը ստացվել է, շուտով կապ կհաստատենք։",
@@ -2475,7 +2478,7 @@ dentistMoreFreeTitle: "Бесплатная регистрация",
         privacyP2: "Какие данные мы собираем. Ваше имя, номер телефона, город, необходимую услугу и комментарий, которые вы указываете в форме. Для врачей — также специализацию и адрес клиники.",
         privacyP3: "Для чего используем. Чтобы связаться с вами, понять ваш запрос и помочь найти подходящего стоматолога.",
         privacyP4: "Кому передаём. Только с вашего согласия — подходящему стоматологу-партнёру или клинике, чтобы они связались с вами. Dental Armenia является посредником, и стоматологи-партнёры могут оплачивать нам направление пациентов. Мы не продаём ваши данные для других целей.",
-        privacyP5: "Статистика. Сайт использует Google Analytics для подсчёта посещений и виджет чата (TalkTG). Они могут использовать cookie.",
+                privacyP5: "Статистика. Сайт использует Google Analytics для подсчёта посещений. Он может использовать cookie.",
         privacyP6: "Ваши права. В любой момент вы можете попросить исправить или удалить ваши данные, написав нам в WhatsApp: +374 55 466266. Мы храним данные только столько, сколько необходимо для указанных целей.",
         sending: "Отправка…",
                 formRequestSent: "Спасибо! Ваша заявка получена, мы скоро свяжемся с вами.",
@@ -2663,7 +2666,7 @@ dentistMoreFreeTitle: "Free registration",
         privacyP2: "What we collect. Your name, phone number, city, the service you need and the comment you enter in the form. For dentists, also specialty and clinic address.",
         privacyP3: "What we use it for. To contact you, understand your request and help you find a suitable dentist.",
         privacyP4: "Who we share it with. Only with your consent, a suitable partner dentist or clinic, so they can contact you. Dental Armenia is an intermediary, and partner dentists may pay us for referring patients. We do not sell your data for other purposes.",
-        privacyP5: "Analytics. The site uses Google Analytics to count visits and a chat widget (TalkTG). They may use cookies.",
+                privacyP5: "Analytics. The site uses Google Analytics to count visits. It may use cookies.",
         privacyP6: "Your rights. You can ask us at any time to correct or delete your data by messaging us on WhatsApp: +374 55 466266. We keep data only as long as needed for the purposes above.",
         sending: "Sending…",
                 formRequestSent: "Thank you! Your request was received, we will contact you soon.",
@@ -3050,76 +3053,18 @@ function toggleAboutCard(cardId) {
     }
 
     loadReviews();
-          document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"]').forEach((link) => {
+             document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"], a[href*="t.me"]').forEach((link) => {
       link.addEventListener("click", () => {
         if (typeof gtag === "function") {
           gtag("event", "contact_click", {
-            method: link.href.startsWith("tel:") ? "phone" : "whatsapp"
+            method: link.href.startsWith("tel:")
+              ? "phone"
+              : link.href.includes("t.me") ? "telegram" : "whatsapp"
           });
         }
       });
     });
   </script>
 
-  <!-- TALKTG WIDGET -->
-  <script
-    src="https://www.talktg.com/widget.js"
-    data-site-id="cmvmczrk20003k108aaeiccc5"
-    async
-  ></script>
-    <script>
-(function () {
-  const moved = new Set();
-
-  function check() {
-    if (window.innerWidth > 760) return;
-    const bar = document.querySelector(".sticky-contact");
-
-    const fixedEls = [];
-    document.querySelectorAll("body *").forEach((el) => {
-      if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
-      if (el.closest(".sticky-contact, .modal, .site-header")) return;
-      if (getComputedStyle(el).position !== "fixed") return;
-      let p = el.parentElement;
-      while (p && p !== document.body) {
-        if (getComputedStyle(p).position === "fixed") return;
-        p = p.parentElement;
-      }
-      fixedEls.push(el);
-    });
-
-    const panelOpen = fixedEls.some((el) => {
-      const r = el.getBoundingClientRect();
-      return r.width > 200 && r.height > 300;
-    });
-
-    if (bar) bar.style.display = panelOpen ? "none" : "";
-
-    fixedEls.forEach((el) => {
-      const r = el.getBoundingClientRect();
-      const small = r.width > 0 && r.width <= 120 && r.height <= 120;
-      if (panelOpen && small) {
-        el.style.setProperty("top", "12px", "important");
-        el.style.setProperty("right", "12px", "important");
-        el.style.setProperty("bottom", "auto", "important");
-        el.style.setProperty("left", "auto", "important");
-        el.style.setProperty("z-index", "2147483647", "important");
-        moved.add(el);
-      }
-    });
-
-    if (!panelOpen) {
-      moved.forEach((el) => {
-        ["top", "right", "bottom", "left", "z-index"].forEach((prop) =>
-          el.style.removeProperty(prop)
-        );
-      });
-      moved.clear();
-    }
-  }
-
-  setInterval(check, 500);
-})();
-</script>
 </body>
 </html>
