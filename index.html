@@ -1238,10 +1238,11 @@ body.modal-open .sticky-contact { display: none; }
       font-weight: 700;
       text-decoration: underline;
     }
-       .privacy-content p {
+  .privacy-content p {
       color: var(--muted);
       font-size: 14px;
     }
+    body.chat-open .sticky-contact { display: none; }
   </style>
   <script type="application/ld+json">
 {
@@ -3129,8 +3130,8 @@ function toggleAboutCard(cardId) {
       liftQueued = false;
       liftWidgetButtons();
     });
-  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
-
+   }).observe(document.body, { childList: true, subtree: true });
+  setInterval(liftWidgetButtons, 700);
   window.addEventListener("load", liftWidgetButtons);
   window.addEventListener("resize", liftWidgetButtons);
   liftWidgetButtons();
