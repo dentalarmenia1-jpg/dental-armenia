@@ -3067,5 +3067,59 @@ function toggleAboutCard(cardId) {
     data-site-id="cmvmczrk20003k108aaeiccc5"
     async
   ></script>
+    <script>
+(function () {
+  const moved = new Set();
+
+  function check() {
+    if (window.innerWidth > 760) return;
+    const bar = document.querySelector(".sticky-contact");
+
+    const fixedEls = [];
+    document.querySelectorAll("body *").forEach((el) => {
+      if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
+      if (el.closest(".sticky-contact, .modal, .site-header")) return;
+      if (getComputedStyle(el).position !== "fixed") return;
+      let p = el.parentElement;
+      while (p && p !== document.body) {
+        if (getComputedStyle(p).position === "fixed") return;
+        p = p.parentElement;
+      }
+      fixedEls.push(el);
+    });
+
+    const panelOpen = fixedEls.some((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 200 && r.height > 300;
+    });
+
+    if (bar) bar.style.display = panelOpen ? "none" : "";
+
+    fixedEls.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      const small = r.width > 0 && r.width <= 120 && r.height <= 120;
+      if (panelOpen && small) {
+        el.style.setProperty("top", "12px", "important");
+        el.style.setProperty("right", "12px", "important");
+        el.style.setProperty("bottom", "auto", "important");
+        el.style.setProperty("left", "auto", "important");
+        el.style.setProperty("z-index", "2147483647", "important");
+        moved.add(el);
+      }
+    });
+
+    if (!panelOpen) {
+      moved.forEach((el) => {
+        ["top", "right", "bottom", "left", "z-index"].forEach((prop) =>
+          el.style.removeProperty(prop)
+        );
+      });
+      moved.clear();
+    }
+  }
+
+  setInterval(check, 500);
+})();
+</script>
 </body>
 </html>
