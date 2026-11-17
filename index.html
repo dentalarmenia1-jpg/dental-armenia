@@ -1742,7 +1742,76 @@ body.modal-open .sticky-contact { display: none; }
 </div><!-- /about-grid -->
   </div><!-- /container -->
 </section>
-    <!-- CONTACT -->
+    <!-- FAQ START -->
+<style>
+  .faq-list{max-width:820px;margin:0 auto}
+  .faq-list details{margin-top:10px;padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+  .faq-list summary{display:flex;justify-content:space-between;gap:12px;font-weight:700;cursor:pointer;list-style:none}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-list summary:after{content:"+";color:var(--primary);font-size:22px;line-height:1}
+  .faq-list details[open] summary:after{content:"–"}
+  .faq-list details p{margin:10px 0 0;color:var(--muted);font-size:15px}
+</style>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow" data-i18n="faqEyebrow">FAQ</span>
+      <h2 data-i18n="faqTitle">Հաճախ տրվող հարցեր</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary data-i18n="faq1q">Ինչպե՞ս եք աշխատում։</summary><p data-i18n="faq1a">Դուք ընտրում եք ծառայությունը և ուղարկում հայտ։ Մենք կապնվում ենք ձեզ հետ, պարզում ենք ձեր իրավիճակը և օգնում ենք գտնել համապատասխան ատամնաբույժ։ Բուժման վերաբերյալ որոշումներն ընդունում է բժիշկը։</p></details>
+      <details><summary data-i18n="faq2q">Որքա՞ն է արժե իմպլանտը։</summary><p data-i18n="faq2a">Արժեքը կախված է կոնկրետ դեպքից, ընտրված մասնագետից և օգտագործվող նյութերից։ Մանրամասները կճշտվեն զրույցի ընթացքում։</p></details>
+      <details><summary data-i18n="faq3q">Ցավո՞ւմ է ատամի հեռացումը։</summary><p data-i18n="faq3a">Զգացողությունները անհատական են։ Նման միջամտությունները սովորաբար կատարվում են տեղային անզգայացմամբ, իսկ մանրամասները բժիշկը կբացատրի ձեզ նախապես։</p></details>
+      <details><summary data-i18n="faq4q">Ի՞նչ ծառայությունների համար կարող եմ դիմել։</summary><p data-i18n="faq4a">Թերապիա, օրթոպեդիա, վիրաբուժություն, իմպլանտացիա, մանկական ստոմատոլոգիա, օրթոդոնտիա, ինչպես նաև ատամների մաքրում և սպիտակեցում։</p></details>
+      <details><summary data-i18n="faq5q">Ի՞նչ է լինում հայտ ուղարկելուց հետո։</summary><p data-i18n="faq5a">Մենք կապնվում ենք ձեզ հետ նշված հեռախոսահամարով՝ ձեր իրավիճակը պարզելու և հաջորդ քայլերը քննարկելու համար։</p></details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Ինչպե՞ս եք աշխատում։","acceptedAnswer":{"@type":"Answer","text":"Դուք ընտրում եք ծառայությունը և ուղարկում հայտ։ Մենք կապնվում ենք ձեզ հետ, պարզում ենք ձեր իրավիճակը և օգնում ենք գտնել համապատասխան ատամնաբույժ։ Բուժման վերաբերյալ որոշումներն ընդունում է բժիշկը։"}},
+{"@type":"Question","name":"Որքա՞ն է արժե իմպլանտը։","acceptedAnswer":{"@type":"Answer","text":"Արժեքը կախված է կոնկրետ դեպքից, ընտրված մասնագետից և օգտագործվող նյութերից։ Մանրամասները կճշտվեն զրույցի ընթացքում։"}},
+{"@type":"Question","name":"Ցավո՞ւմ է ատամի հեռացումը։","acceptedAnswer":{"@type":"Answer","text":"Զգացողությունները անհատական են։ Նման միջամտությունները սովորաբար կատարվում են տեղային անզգայացմամբ, իսկ մանրամասները բժիշկը կբացատրի ձեզ նախապես։"}},
+{"@type":"Question","name":"Ի՞նչ ծառայությունների համար կարող եմ դիմել։","acceptedAnswer":{"@type":"Answer","text":"Թերապիա, օրթոպեդիա, վիրաբուժություն, իմպլանտացիա, մանկական ստոմատոլոգիա, օրթոդոնտիա, ինչպես նաև ատամների մաքրում և սպիտակեցում։"}},
+{"@type":"Question","name":"Ի՞նչ է լինում հայտ ուղարկելուց հետո։","acceptedAnswer":{"@type":"Answer","text":"Մենք կապնվում ենք ձեզ հետ նշված հեռախոսահամարով՝ ձեր իրավիճակը պարզելու և հաջորդ քայլերը քննարկելու համար։"}}
+]}
+</script>
+
+<script>
+/* FAQ թարգմանություններ (ռուսերեն, անգլերեն). աշխատում է գործող լեզվի փոխարկիչի հետ */
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof translations === "undefined") return;
+  Object.assign(translations.hy, {
+    faqEyebrow:"FAQ", faqTitle:"Հաճախ տրվող հարցեր",
+    faq1q:"Ինչպե՞ս եք աշխատում։", faq1a:"Դուք ընտրում եք ծառայությունը և ուղարկում հայտ։ Մենք կապնվում ենք ձեզ հետ, պարզում ենք ձեր իրավիճակը և օգնում ենք գտնել համապատասխան ատամնաբույժ։ Բուժման վերաբերյալ որոշումներն ընդունում է բժիշկը։",
+    faq2q:"Որքա՞ն է արժե իմպլանտը։", faq2a:"Արժեքը կախված է կոնկրետ դեպքից, ընտրված մասնագետից և օգտագործվող նյութերից։ Մանրամասները կճշտվեն զրույցի ընթացքում։",
+    faq3q:"Ցավո՞ւմ է ատամի հեռացումը։", faq3a:"Զգացողությունները անհատական են։ Նման միջամտությունները սովորաբար կատարվում են տեղային անզգայացմամբ, իսկ մանրամասները բժիշկը կբացատրի ձեզ նախապես։",
+    faq4q:"Ի՞նչ ծառայությունների համար կարող եմ դիմել։", faq4a:"Թերապիա, օրթոպեդիա, վիրաբուժություն, իմպլանտացիա, մանկական ստոմատոլոգիա, օրթոդոնտիա, ինչպես նաև ատամների մաքրում և սպիտակեցում։",
+    faq5q:"Ի՞նչ է լինում հայտ ուղարկելուց հետո։", faq5a:"Մենք կապնվում ենք ձեզ հետ նշված հեռախոսահամարով՝ ձեր իրավիճակը պարզելու և հաջորդ քայլերը քննարկելու համար։"
+  });
+  Object.assign(translations.ru, {
+    faqEyebrow:"FAQ", faqTitle:"Частые вопросы",
+    faq1q:"Как вы работаете?", faq1a:"Вы выбираете услугу и отправляете заявку. Мы связываемся с вами, уточняем вашу ситуацию и помогаем найти подходящего стоматолога. Решения о лечении принимает врач.",
+    faq2q:"Сколько стоит имплант?", faq2a:"Стоимость зависит от конкретного случая, выбранного специалиста и используемых материалов. Подробности уточняются в разговоре.",
+    faq3q:"Больно ли удалять зуб?", faq3a:"Ощущения индивидуальны. Подобные вмешательства обычно проводят под местной анестезией, а подробности врач объяснит вам заранее.",
+    faq4q:"По каким услугам можно обратиться?", faq4a:"Терапия, ортопедия, хирургия, имплантация, детская стоматология, ортодонтия, а также чистка и отбеливание зубов.",
+    faq5q:"Что происходит после отправки заявки?", faq5a:"Мы связываемся с вами по указанному номеру, чтобы уточнить ситуацию и обсудить дальнейшие шаги."
+  });
+  Object.assign(translations.en, {
+    faqEyebrow:"FAQ", faqTitle:"Frequently asked questions",
+    faq1q:"How do you work?", faq1a:"You choose a service and send a request. We contact you, learn about your situation and help you find a suitable dentist. Treatment decisions are made by the doctor.",
+    faq2q:"How much does an implant cost?", faq2a:"The cost depends on the specific case, the chosen specialist and the materials used. Details are clarified during the conversation.",
+    faq3q:"Does tooth extraction hurt?", faq3a:"Sensations are individual. Such procedures are usually done under local anesthesia, and the doctor will explain the details to you in advance.",
+    faq4q:"What services can I apply for?", faq4a:"General dentistry, prosthodontics, oral surgery, dental implants, pediatric dentistry, orthodontics, as well as teeth cleaning and whitening.",
+    faq5q:"What happens after I send a request?", faq5a:"We contact you on the number provided to learn about your situation and discuss next steps."
+  });
+  if (typeof setLanguage === "function" && typeof currentLanguage !== "undefined") setLanguage(currentLanguage);
+});
+</script>
+<!-- FAQ END -->
+      <!-- CONTACT -->
     <section class="section contact-section" id="contact">
       <div class="container">
         <div class="contact-card">
