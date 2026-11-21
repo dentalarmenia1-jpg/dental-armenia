@@ -52,7 +52,7 @@
     :root {
       --primary: #27796e;
       --primary-dark: #1b5c53;
-      --primary-light: #dcee9;
+   --primary-light: #dcefe9;
       --background: #f3f8f6;
       --surface: #e9f3ef;
       --surface-dark: #dcebe5;
@@ -133,24 +133,24 @@
 
     .section-heading h2 {
       margin: 0 0 12px;
-      ont-size: clamp(27px, 4vw, 38px);
+      font-size: clamp(27px, 4vw, 38px);
       line-height: 1.25;
     }
 
     .section-heading p {
       margin: 0;
       color: var(--muted);
-      ont-size: 16px;
+      font-size: 16px;
     }
 
     .eyebrow {
       display: inline-block;
       margin-bottom: 12px;
       color: var(--primary);
-      ont-size: 13px;
-      ont-weight: 800;
+      font-size: 13px;
+      font-weight: 800;
       letter-spacing: 1px;
-      text-transorm: uppercase;
+      text-transform: uppercase;
     }
 
     /* HEADER */
@@ -161,11 +161,11 @@
       z-index: 100;
       background: rgba(243, 248, 246, 0.96);
       border-bottom: 1px solid var(--border);
-      backdrop-ilter: blur(12px);
+      backdrop-filter: blur(12px);
     }
 
     .header-inner {
-      display: lex;
+      display: flex;
       min-height: 82px;
       align-items: center;
       justify-content: space-between;
