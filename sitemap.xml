@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dentalarmenia.com/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dentalarmenia.com/blog/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dentalarmenia.com/blog/brushing-teeth.html</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dentalarmenia.com/blog/dental-floss.html</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dentalarmenia.com/blog/caries-prevention.html</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dentalarmenia.com/blog/bleeding-gums.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url>
+    <loc>https://dentalarmenia.com/</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/implantation.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/implantation-ru.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/implantation-en.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/blog/</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/blog/brushing-teeth.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/blog/dental-floss.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/blog/caries-prevention.html</loc>
+  </url>
+  <url>
+    <loc>https://dentalarmenia.com/blog/bleeding-gums.html</loc>
+  </url>
 </urlset>
